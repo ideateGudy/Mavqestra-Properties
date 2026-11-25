@@ -5,7 +5,7 @@ import { ArrowUpRight, BadgeCheck, Star, X } from "lucide-react";
 import { reviews } from "@/data/reviews";
 import { siteConfig } from "@/config/site";
 import type { Review } from "@/types";
-import { MOTION, gsap, useGSAP } from "@/lib/gsap";
+import { MOTION, gsap, revealOnScroll, useGSAP } from "@/lib/gsap";
 
 function GoogleMark() {
   return (
@@ -164,30 +164,13 @@ export function GoogleReviewsSection() {
       const section = sectionRef.current;
       if (!section) return;
 
+      const entryTargets = section.querySelectorAll("[data-reviews-reveal]");
+      revealOnScroll(entryTargets, section);
+
       const prefersReduced = window.matchMedia(
         "(prefers-reduced-motion: reduce)"
       ).matches;
       if (prefersReduced) return;
-
-      const entryTargets = section.querySelectorAll("[data-reviews-reveal]");
-      if (entryTargets.length > 0) {
-        gsap.fromTo(
-          entryTargets,
-          { opacity: 0, y: MOTION.distance },
-          {
-            opacity: 1,
-            y: 0,
-            duration: MOTION.duration,
-            stagger: MOTION.stagger,
-            ease: MOTION.ease,
-            scrollTrigger: {
-              trigger: section,
-              start: "top 82%",
-              once: true,
-            },
-          }
-        );
-      }
 
       const created: gsap.core.Tween[] = [];
 
