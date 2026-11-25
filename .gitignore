@@ -12,6 +12,7 @@
 
 # Agent configuration files
 .agent/
+.agent/**
 
 # testing
 /coverage
