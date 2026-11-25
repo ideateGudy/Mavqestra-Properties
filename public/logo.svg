@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 44" fill="none" role="img" aria-label="MAVQESTRA PROPERTIES">
+  <path
+    d="M4 35V15L20 28L36 15V35"
+    stroke="#0E0D0C"
+    stroke-width="2.8"
+    stroke-linecap="square"
+    stroke-linejoin="miter"
+  />
+  <path
+    d="M11.5 15.5L20 8.5L28.5 15.5"
+    stroke="#0E0D0C"
+    stroke-width="2.2"
+    stroke-linecap="square"
+    stroke-linejoin="miter"
+  />
+  <circle cx="20" cy="17.5" r="2.6" fill="#E8913A" />
+  <text
+    x="50"
+    y="23"
+    fill="#0E0D0C"
+    font-family="system-ui, -apple-system, 'Segoe UI', sans-serif"
+    font-size="14"
+    font-weight="600"
+    letter-spacing="4.2"
+  >
+    MAVQESTRA
+  </text>
+  <text
+    x="50.5"
+    y="35"
+    fill="#0E0D0C"
+    fill-opacity="0.72"
+    font-family="system-ui, -apple-system, 'Segoe UI', sans-serif"
+    font-size="8.5"
+    font-weight="500"
+    letter-spacing="3.6"
+  >
+    PROPERTIES
+  </text>
+</svg>

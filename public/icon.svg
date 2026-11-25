@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 36" fill="none" aria-hidden="true">
+  <path
+    d="M4 31V11L20 24L36 11V31"
+    stroke="#0E0D0C"
+    stroke-width="2.8"
+    stroke-linecap="square"
+    stroke-linejoin="miter"
+  />
+  <path
+    d="M11.5 11.5L20 4.5L28.5 11.5"
+    stroke="#0E0D0C"
+    stroke-width="2.2"
+    stroke-linecap="square"
+    stroke-linejoin="miter"
+  />
+  <circle cx="20" cy="13.5" r="2.6" fill="#E8913A" />
+</svg>
