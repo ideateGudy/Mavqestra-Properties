@@ -34,12 +34,12 @@ ffmpeg -y -i reference/hero-raw.mp4 -an \
   public/videos/hero-construction.mp4
 ```
 
-### Mobile (`720px` wide, 30 fps, all-intra H.264)
+### Mobile (`1080px` wide, 30 fps, all-intra H.264)
 
 ```bash
 ffmpeg -y -i reference/hero-raw.mp4 -an \
-  -vf "fps=30,scale=720:-2" \
-  -c:v libx264 -preset slow -crf 28 \
+  -vf "fps=30,scale=1080:-2" \
+  -c:v libx264 -preset slow -crf 26 \
   -g 1 -keyint_min 1 -sc_threshold 0 -bf 0 \
   -x264-params keyint=1:min-keyint=1:scenecut=0 \
   -pix_fmt yuv420p -movflags +faststart \
