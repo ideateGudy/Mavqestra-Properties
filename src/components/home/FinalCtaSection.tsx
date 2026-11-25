@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
 import { siteConfig } from "@/config/site";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
-import { gsap, useGSAP } from "@/lib/gsap";
+import { revealOnScroll, useGSAP } from "@/lib/gsap";
 
 export function FinalCtaSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -13,29 +13,8 @@ export function FinalCtaSection() {
     () => {
       const section = sectionRef.current;
       if (!section) return;
-
-      const prefersReduced = window.matchMedia(
-        "(prefers-reduced-motion: reduce)"
-      ).matches;
-      if (prefersReduced) return;
-
       const targets = section.querySelectorAll("[data-final-reveal]");
-      gsap.fromTo(
-        targets,
-        { opacity: 0, y: 20 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.65,
-          stagger: 0.08,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: section,
-            start: "top 82%",
-            once: true,
-          },
-        }
-      );
+      revealOnScroll(targets, section);
     },
     { scope: sectionRef }
   );

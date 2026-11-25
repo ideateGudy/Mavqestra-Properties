@@ -6,7 +6,7 @@ import { ArrowUpRight } from "lucide-react";
 import { processSteps, services } from "@/data/services";
 import { siteConfig } from "@/config/site";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
-import { gsap, useGSAP } from "@/lib/gsap";
+import { gsap, revealOnScroll, useGSAP } from "@/lib/gsap";
 
 export function ServicesProcessSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -21,6 +21,18 @@ export function ServicesProcessSection() {
         "(prefers-reduced-motion: reduce)"
       ).matches;
 
+      const servicesList = section.querySelector("[data-services-list]");
+      const serviceRows = section.querySelectorAll("[data-service-row]");
+      if (servicesList) {
+        revealOnScroll(serviceRows, servicesList, { stagger: 0.07 });
+      }
+
+      const processGrid = section.querySelector("[data-process-grid]");
+      const stepCards = section.querySelectorAll("[data-process-step]");
+      if (processGrid) {
+        revealOnScroll(stepCards, processGrid, { stagger: 0.1 });
+      }
+
       if (prefersReduced) {
         if (lineRef.current) {
           gsap.set(lineRef.current, { scaleX: 1 });
@@ -28,25 +40,7 @@ export function ServicesProcessSection() {
         return;
       }
 
-      const serviceRows = section.querySelectorAll("[data-service-row]");
-      gsap.fromTo(
-        serviceRows,
-        { opacity: 0, y: 18 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.55,
-          stagger: 0.07,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: section.querySelector("[data-services-list]"),
-            start: "top 82%",
-            once: true,
-          },
-        }
-      );
-
-      if (lineRef.current) {
+      if (lineRef.current && processGrid) {
         gsap.fromTo(
           lineRef.current,
           { scaleX: 0 },
@@ -54,32 +48,14 @@ export function ServicesProcessSection() {
             scaleX: 1,
             ease: "none",
             scrollTrigger: {
-              trigger: section.querySelector("[data-process-grid]"),
-              start: "top 80%",
+              trigger: processGrid,
+              start: "top 85%",
               end: "bottom 65%",
               scrub: 0.5,
             },
           }
         );
       }
-
-      const stepCards = section.querySelectorAll("[data-process-step]");
-      gsap.fromTo(
-        stepCards,
-        { opacity: 0, y: 20 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          stagger: 0.1,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: section.querySelector("[data-process-grid]"),
-            start: "top 82%",
-            once: true,
-          },
-        }
-      );
     },
     { scope: sectionRef }
   );

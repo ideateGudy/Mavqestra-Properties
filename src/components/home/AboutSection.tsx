@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { siteConfig } from "@/config/site";
-import { gsap, useGSAP } from "@/lib/gsap";
+import { revealOnScroll, useGSAP } from "@/lib/gsap";
 
 export function AboutSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -14,29 +14,8 @@ export function AboutSection() {
     () => {
       const section = sectionRef.current;
       if (!section) return;
-
-      const prefersReduced = window.matchMedia(
-        "(prefers-reduced-motion: reduce)"
-      ).matches;
-      if (prefersReduced) return;
-
       const items = section.querySelectorAll("[data-about-reveal]");
-      gsap.fromTo(
-        items,
-        { opacity: 0, y: 20 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.65,
-          stagger: 0.1,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: section,
-            start: "top 80%",
-            once: true,
-          },
-        }
-      );
+      revealOnScroll(items, section, { stagger: 0.1 });
     },
     { scope: sectionRef }
   );

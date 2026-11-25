@@ -32,6 +32,10 @@ export function HeroSection() {
       const video = videoRef.current;
       if (!section) return;
 
+      if (window.scrollY > 0) {
+        window.scrollTo({ top: 0, behavior: "instant" });
+      }
+
       ScrollTrigger.config({ ignoreMobileResize: true });
 
       const mm = gsap.matchMedia();
@@ -94,9 +98,14 @@ export function HeroSection() {
         });
       };
 
+      let activeTl: gsap.core.Timeline | null = null;
+
       const setupScrollScrub = (isDesktop: boolean) => {
         const duration = video.duration;
         if (!Number.isFinite(duration) || duration <= 0) return;
+
+        activeTl?.scrollTrigger?.kill();
+        activeTl?.kill();
 
         video.pause();
         video.currentTime = 0;
@@ -167,6 +176,7 @@ export function HeroSection() {
           );
         }
 
+        activeTl = tl;
         ScrollTrigger.refresh();
         document.fonts?.ready.then(() => {
           ScrollTrigger.refresh();
@@ -203,6 +213,9 @@ export function HeroSection() {
 
           return () => {
             video.removeEventListener("loadedmetadata", onReady);
+            activeTl?.scrollTrigger?.kill();
+            activeTl?.kill();
+            activeTl = null;
             if (rafId !== null) {
               window.cancelAnimationFrame(rafId);
               rafId = null;

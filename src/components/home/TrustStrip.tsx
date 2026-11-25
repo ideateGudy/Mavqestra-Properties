@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { siteConfig } from "@/config/site";
-import { gsap, useGSAP } from "@/lib/gsap";
+import { gsap, revealOnScroll, useGSAP } from "@/lib/gsap";
 
 export function TrustStrip() {
   const stripRef = useRef<HTMLElement>(null);
@@ -17,24 +17,7 @@ export function TrustStrip() {
       ).matches;
 
       const statItems = container.querySelectorAll<HTMLElement>("[data-stat-item]");
-      if (!prefersReduced && statItems.length > 0) {
-        gsap.fromTo(
-          statItems,
-          { opacity: 0, y: 16 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.55,
-            stagger: 0.08,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: container,
-              start: "top 86%",
-              once: true,
-            },
-          }
-        );
-      }
+      revealOnScroll(statItems, container);
 
       const numberEls = container.querySelectorAll<HTMLElement>("[data-count]");
       if (prefersReduced) {

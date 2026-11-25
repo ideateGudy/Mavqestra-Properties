@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { gsap, useGSAP } from "@/lib/gsap";
+import { revealOnScroll, useGSAP } from "@/lib/gsap";
 
 export function ValuationCtaBand() {
   const bandRef = useRef<HTMLElement>(null);
@@ -12,29 +12,8 @@ export function ValuationCtaBand() {
     () => {
       const band = bandRef.current;
       if (!band) return;
-
-      const prefersReduced = window.matchMedia(
-        "(prefers-reduced-motion: reduce)"
-      ).matches;
-      if (prefersReduced) return;
-
       const targets = band.querySelectorAll("[data-valuation-reveal]");
-      gsap.fromTo(
-        targets,
-        { opacity: 0, y: 20 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.65,
-          stagger: 0.08,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: band,
-            start: "top 82%",
-            once: true,
-          },
-        }
-      );
+      revealOnScroll(targets, band);
     },
     { scope: bandRef }
   );
