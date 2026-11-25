@@ -7,9 +7,9 @@ export const siteConfig = {
   url: "https://mavqestra.example", // TODO(client): replace with production domain
 
   // TODO(client): replace with official WhatsApp number (international format, digits only)
-  whatsappNumber: "2348000000000",
+  whatsappNumber: "2349033069636",
   // TODO(client): replace with official phone display string
-  phoneDisplay: "+234 800 000 0000",
+  phoneDisplay: "+234 903 306 9636",
   // TODO(client): replace with official contact email
   email: "concierge@mavqestra.example",
   // TODO(client): replace with official office address
