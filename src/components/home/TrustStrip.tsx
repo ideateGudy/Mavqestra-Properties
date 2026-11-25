@@ -16,6 +16,26 @@ export function TrustStrip() {
         "(prefers-reduced-motion: reduce)"
       ).matches;
 
+      const statItems = container.querySelectorAll<HTMLElement>("[data-stat-item]");
+      if (!prefersReduced && statItems.length > 0) {
+        gsap.fromTo(
+          statItems,
+          { opacity: 0, y: 16 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.55,
+            stagger: 0.08,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: container,
+              start: "top 86%",
+              once: true,
+            },
+          }
+        );
+      }
+
       const numberEls = container.querySelectorAll<HTMLElement>("[data-count]");
       if (prefersReduced) {
         numberEls.forEach((el) => {
@@ -52,12 +72,13 @@ export function TrustStrip() {
   return (
     <section
       ref={stripRef}
+      data-hero-next
       aria-label="Key figures"
       className="border-y border-sand bg-ivory text-basalt"
     >
       <div className="mx-auto grid max-w-7xl grid-cols-2 gap-8 px-6 py-12 md:grid-cols-4 md:px-10 md:py-14">
         {siteConfig.stats.map((stat) => (
-          <div key={stat.label} className="space-y-1.5">
+          <div key={stat.label} data-stat-item className="space-y-1.5">
             <p
               data-count={stat.value}
               data-suffix={stat.suffix}

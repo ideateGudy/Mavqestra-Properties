@@ -12,7 +12,7 @@ export function HeroSection() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const introRef = useRef<HTMLDivElement>(null);
   const endCtaRef = useRef<HTMLDivElement>(null);
-  const scrollCueRef = useRef<HTMLDivElement>(null);
+  const scrollCueRef = useRef<HTMLButtonElement>(null);
   const progressBarRef = useRef<HTMLDivElement>(null);
 
   const [videoError, setVideoError] = useState(false);
@@ -113,6 +113,7 @@ export function HeroSection() {
             scrub: 0.4,
             anticipatePin: 1,
             invalidateOnRefresh: true,
+            refreshPriority: 1,
             onUpdate: (self) => {
               if (progressBarRef.current) {
                 progressBarRef.current.style.transform = `scaleX(${self.progress})`;
@@ -166,6 +167,7 @@ export function HeroSection() {
           );
         }
 
+        ScrollTrigger.refresh();
         document.fonts?.ready.then(() => {
           ScrollTrigger.refresh();
         });
@@ -221,6 +223,15 @@ export function HeroSection() {
 
   const consultationUrl = buildWhatsAppUrl(siteConfig.defaultWhatsAppMessage);
   const showStaticPoster = reducedMotion || videoError;
+
+  const handleScrollToNext = () => {
+    const nextEl = document.querySelector<HTMLElement>("[data-hero-next]");
+    if (!nextEl) return;
+    nextEl.scrollIntoView({
+      behavior: reducedMotion ? "auto" : "smooth",
+      block: "start",
+    });
+  };
 
   return (
     <section
@@ -302,14 +313,16 @@ export function HeroSection() {
 
       {/* Scroll cue */}
       {!showStaticPoster && (
-        <div
+        <button
           ref={scrollCueRef}
-          aria-hidden="true"
-          className="pointer-events-none absolute bottom-6 left-1/2 z-10 flex -translate-x-1/2 items-center gap-2 text-xs uppercase tracking-[0.24em] text-ivory/75 transition-opacity duration-300"
+          type="button"
+          onClick={handleScrollToNext}
+          aria-label="Scroll to next section"
+          className="absolute bottom-6 left-1/2 z-20 flex min-h-[44px] -translate-x-1/2 cursor-pointer items-center gap-2 rounded-full px-4 text-xs uppercase tracking-[0.24em] text-ivory/80 transition-opacity duration-300 hover:text-ivory"
         >
           <span>Scroll</span>
-          <ArrowDown className="h-3.5 w-3.5 text-ember" />
-        </div>
+          <ArrowDown className="h-3.5 w-3.5 text-ember" aria-hidden="true" />
+        </button>
       )}
 
       {/* Thin ember scroll progress line */}
