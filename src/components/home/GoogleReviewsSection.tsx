@@ -189,42 +189,37 @@ export function GoogleReviewsSection() {
         );
       }
 
-      const mm = gsap.matchMedia();
-      mm.add("(min-width: 768px)", () => {
-        const created: gsap.core.Tween[] = [];
+      const created: gsap.core.Tween[] = [];
 
-        if (rowOneRef.current) {
-          created.push(
-            gsap.to(rowOneRef.current, {
-              xPercent: -50,
-              repeat: -1,
-              duration: 38,
-              ease: "none",
-            })
-          );
-        }
+      if (rowOneRef.current) {
+        created.push(
+          gsap.to(rowOneRef.current, {
+            xPercent: -50,
+            repeat: -1,
+            duration: 38,
+            ease: "none",
+          })
+        );
+      }
 
-        if (rowTwoRef.current) {
-          gsap.set(rowTwoRef.current, { xPercent: -50 });
-          created.push(
-            gsap.to(rowTwoRef.current, {
-              xPercent: 0,
-              repeat: -1,
-              duration: 42,
-              ease: "none",
-            })
-          );
-        }
+      if (rowTwoRef.current) {
+        gsap.set(rowTwoRef.current, { xPercent: -50 });
+        created.push(
+          gsap.to(rowTwoRef.current, {
+            xPercent: 0,
+            repeat: -1,
+            duration: 42,
+            ease: "none",
+          })
+        );
+      }
 
-        tweensRef.current = created;
+      tweensRef.current = created;
 
-        return () => {
-          created.forEach((t) => t.kill());
-          tweensRef.current = [];
-        };
-      });
-
-      return () => mm.revert();
+      return () => {
+        created.forEach((t) => t.kill());
+        tweensRef.current = [];
+      };
     },
     { scope: sectionRef }
   );
@@ -299,46 +294,35 @@ export function GoogleReviewsSection() {
           </div>
         </div>
 
-        {/* Right: mobile swipe carousel + desktop pausable two-row marquee */}
+        {/* Right: pausable two-row infinite marquee (mobile & desktop) */}
         <div
           data-reviews-reveal
           className="min-w-0 overflow-hidden lg:col-span-8"
           onMouseEnter={pauseMarquee}
           onMouseLeave={resumeMarquee}
+          onTouchStart={pauseMarquee}
+          onTouchEnd={resumeMarquee}
           onFocusCapture={pauseMarquee}
           onBlurCapture={resumeMarquee}
         >
-          {/* Mobile swipeable carousel */}
-          <div className="-mx-6 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-4 md:hidden">
-            {reviews.map((review) => (
-              <ReviewCard
-                key={review.id}
-                review={review}
-                onReadMore={openModal}
-                className="w-[84vw] max-w-[340px] shrink-0 snap-start"
-              />
-            ))}
-          </div>
-
-          {/* Desktop two-row marquee */}
-          <div className="hidden space-y-5 overflow-hidden md:block">
-            <div ref={rowOneRef} className="flex w-max gap-5 will-change-transform">
+          <div className="space-y-4 overflow-hidden md:space-y-5">
+            <div ref={rowOneRef} className="flex w-max gap-4 will-change-transform md:gap-5">
               {[...rowOne, ...rowOne].map((review, idx) => (
                 <ReviewCard
                   key={`r1-${review.id}-${idx}`}
                   review={review}
                   onReadMore={openModal}
-                  className="w-[340px] shrink-0"
+                  className="w-[280px] shrink-0 sm:w-[320px] md:w-[340px]"
                 />
               ))}
             </div>
-            <div ref={rowTwoRef} className="flex w-max gap-5 will-change-transform">
+            <div ref={rowTwoRef} className="flex w-max gap-4 will-change-transform md:gap-5">
               {[...rowTwo, ...rowTwo].map((review, idx) => (
                 <ReviewCard
                   key={`r2-${review.id}-${idx}`}
                   review={review}
                   onReadMore={openModal}
-                  className="w-[340px] shrink-0"
+                  className="w-[280px] shrink-0 sm:w-[320px] md:w-[340px]"
                 />
               ))}
             </div>
