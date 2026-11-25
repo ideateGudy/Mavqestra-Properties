@@ -13,7 +13,7 @@ mkdir -p public/videos public/images
 echo "Encoding desktop hero video..."
 ffmpeg -y -i "$RAW_INPUT" -an \
   -vf "fps=30,scale=1600:-2" \
-  -c:v libx264 -preset slow -crf 24 \
+  -c:v libx264 -preset slow -crf 26 \
   -g 1 -keyint_min 1 -sc_threshold 0 -bf 0 \
   -x264-params keyint=1:min-keyint=1:scenecut=0 \
   -pix_fmt yuv420p -movflags +faststart \
@@ -22,7 +22,7 @@ ffmpeg -y -i "$RAW_INPUT" -an \
 echo "Encoding mobile hero video..."
 ffmpeg -y -i "$RAW_INPUT" -an \
   -vf "fps=30,scale=1080:-2" \
-  -c:v libx264 -preset slow -crf 26 \
+  -c:v libx264 -preset slow -crf 28 \
   -g 1 -keyint_min 1 -sc_threshold 0 -bf 0 \
   -x264-params keyint=1:min-keyint=1:scenecut=0 \
   -pix_fmt yuv420p -movflags +faststart \
