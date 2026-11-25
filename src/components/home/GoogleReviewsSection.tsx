@@ -169,6 +169,26 @@ export function GoogleReviewsSection() {
       ).matches;
       if (prefersReduced) return;
 
+      const entryTargets = section.querySelectorAll("[data-reviews-reveal]");
+      if (entryTargets.length > 0) {
+        gsap.fromTo(
+          entryTargets,
+          { opacity: 0, y: MOTION.distance },
+          {
+            opacity: 1,
+            y: 0,
+            duration: MOTION.duration,
+            stagger: MOTION.stagger,
+            ease: MOTION.ease,
+            scrollTrigger: {
+              trigger: section,
+              start: "top 82%",
+              once: true,
+            },
+          }
+        );
+      }
+
       const mm = gsap.matchMedia();
       mm.add("(min-width: 768px)", () => {
         const created: gsap.core.Tween[] = [];
@@ -225,7 +245,7 @@ export function GoogleReviewsSection() {
     >
       <div className="mx-auto grid max-w-7xl items-start gap-12 px-6 md:px-10 lg:grid-cols-12">
         {/* Left summary column */}
-        <div className="space-y-6 lg:col-span-4">
+        <div data-reviews-reveal className="space-y-6 lg:col-span-4">
           <div className="inline-flex items-center gap-2.5">
             <GoogleMark />
             <span className="text-xs font-medium uppercase tracking-[0.22em] text-stone">
@@ -281,6 +301,7 @@ export function GoogleReviewsSection() {
 
         {/* Right: mobile swipe carousel + desktop pausable two-row marquee */}
         <div
+          data-reviews-reveal
           className="min-w-0 overflow-hidden lg:col-span-8"
           onMouseEnter={pauseMarquee}
           onMouseLeave={resumeMarquee}
