@@ -53,6 +53,14 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${instrumentSerif.variable} ${geistSans.variable} h-full antialiased`}
     >
+      <head>
+        <link
+          rel="preload"
+          as="image"
+          href="/images/hero-poster.jpg"
+          fetchPriority="high"
+        />
+      </head>
       <body className="min-h-full flex flex-col bg-ivory text-basalt font-sans selection:bg-ember/20 selection:text-basalt">
         <Navbar />
         <RouteTransition>{children}</RouteTransition>
