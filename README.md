@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# MAVQESTRA PROPERTIES
 
-## Getting Started
+Cinematic, frontend-only real estate marketing website built with **Next.js 16 (App Router, Turbopack)**, **TypeScript**, **Tailwind CSS v4**, **GSAP (`ScrollTrigger` + `@gsap/react`)**, and **lucide-react**.
 
-First, run the development server:
+No backend, database, or authentication is required — all listings, reviews, and company details live in static TypeScript files, and enquiries open directly in WhatsApp.
+
+---
+
+## Quick Start
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+For production verification:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run lint
+npm run build
+npm run start
+```
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## Where to Edit Content
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The client only needs to edit these files:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| What to edit | File |
+|---|---|
+| Company name, tagline, **WhatsApp number**, phone, email, address, socials, Google rating/review URL, `propertiesPerPage`, hero copy, stats, about copy | [`src/config/site.ts`](src/config/site.ts) |
+| **Property listings** (`properties` array — 12 seeded placeholders, mark up to 6 with `featured: true`) | [`src/data/properties.ts`](src/data/properties.ts) |
+| Property photos (referenced by `/images/properties/...` in `properties.ts`) | `public/images/properties/` |
+| **Google reviews** (`reviews` array — 6 seeded placeholders) | [`src/data/reviews.ts`](src/data/reviews.ts) |
+| **Services & 4-step process** | [`src/data/services.ts`](src/data/services.ts) |
 
-## Deploy on Vercel
+### Updating the WhatsApp Number
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+In [`src/config/site.ts`](src/config/site.ts), set `whatsappNumber` to your international number using **digits only** (no `+`, spaces, or dashes), for example:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```ts
+whatsappNumber: "2348031234567",
+```
+
+---
+
+## Hero Video Setup (All-Intra Keyframe Encoding)
+
+The landing page hero scrubs a silent MP4 video bidirectionally with scroll. For instant backward scrubbing, **every frame must be a keyframe (`I`-frame)**.
+
+1. Place your raw source video at `reference/hero-raw.mp4` (or pass any file path to the script).
+2. Run the encoding & verification script (requires `ffmpeg` and `ffprobe`):
+
+```bash
+bash scripts/encode-hero.sh reference/hero-raw.mp4
+```
+
+This generates and verifies:
+- `public/videos/hero-construction.mp4` (desktop, 1600px wide, ≤ 12 MB)
+- `public/videos/hero-construction-mobile.mp4` (mobile `< 768px`, 720px wide, ≤ 5 MB)
+- `public/images/hero-poster.jpg` (first frame)
+- `public/images/hero-poster-end.jpg` (last frame, used for `prefers-reduced-motion` fallback)
+
+See [`docs/VIDEO.md`](docs/VIDEO.md) for full FFmpeg & `ffprobe` details.
