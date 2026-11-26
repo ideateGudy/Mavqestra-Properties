@@ -39,7 +39,7 @@ export function PropertyCard({ property, className = "" }: PropertyCardProps) {
 
   return (
     <article
-      className={`group flex flex-col overflow-hidden rounded-[20px] border border-sand bg-ivory transition-transform duration-200 hover:-translate-y-0.5 ${className}`}
+      className={`group flex flex-col overflow-hidden rounded-[20px] border border-border bg-surface-elevated transition-transform duration-200 hover:-translate-y-0.5 ${className}`}
     >
       <Link
         href={`/properties/${property.slug}`}
@@ -62,7 +62,7 @@ export function PropertyCard({ property, className = "" }: PropertyCardProps) {
       <div className="flex flex-1 flex-col justify-between gap-5 p-6">
         <div className="space-y-2">
           <div className="flex items-baseline justify-between gap-2">
-            <p className="font-display text-2xl tracking-tight text-basalt">
+            <p className="font-display text-2xl tracking-tight text-ink">
               {formatNaira(property.price)}
               {property.priceLabel && (
                 <span className="ml-1.5 font-sans text-xs font-normal text-stone">
@@ -74,7 +74,7 @@ export function PropertyCard({ property, className = "" }: PropertyCardProps) {
 
           <Link
             href={`/properties/${property.slug}`}
-            className="block font-display text-2xl leading-snug tracking-tight text-basalt transition-colors group-hover:text-dusk"
+            className="block font-display text-2xl leading-snug tracking-tight text-ink transition-colors group-hover:text-dusk-ink"
           >
             {property.title}
           </Link>
@@ -84,8 +84,8 @@ export function PropertyCard({ property, className = "" }: PropertyCardProps) {
           </p>
         </div>
 
-        <div className="flex items-center justify-between gap-3 border-t border-sand pt-4">
-          <div className="flex flex-wrap items-center gap-4 text-xs text-basalt/80">
+        <div className="flex items-center justify-between gap-3 border-t border-border pt-4">
+          <div className="flex flex-wrap items-center gap-4 text-xs text-ink/80">
             {typeof property.bedrooms === "number" && (
               <span className="inline-flex items-center gap-1.5">
                 <BedDouble className="h-4 w-4 text-stone" aria-hidden="true" />
@@ -111,7 +111,7 @@ export function PropertyCard({ property, className = "" }: PropertyCardProps) {
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`Enquire about ${property.title} on WhatsApp`}
-            className="inline-flex min-h-[44px] min-w-[44px] shrink-0 items-center justify-center rounded-full border border-sand bg-ivory text-basalt transition-colors hover:border-ember hover:bg-ember"
+            className="inline-flex min-h-[44px] min-w-[44px] shrink-0 items-center justify-center rounded-full border border-border bg-surface text-ink transition-colors hover:border-ember hover:bg-ember hover:text-basalt"
           >
             <MessageCircle className="h-4 w-4" aria-hidden="true" />
           </a>

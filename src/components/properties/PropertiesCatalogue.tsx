@@ -197,7 +197,7 @@ export function PropertiesCatalogue({ items }: PropertiesCatalogueProps) {
                 status: e.target.value as PropertyFilterState["status"],
               })
             }
-            className="min-h-[44px] w-full rounded-xl border border-sand bg-ivory px-3 text-sm text-basalt"
+            className="min-h-[44px] w-full rounded-xl border border-border bg-surface-elevated px-3 text-sm text-ink"
           >
             {STATUS_OPTIONS.map((opt) => (
               <option key={opt.value} value={opt.value}>
@@ -222,7 +222,7 @@ export function PropertiesCatalogue({ items }: PropertiesCatalogueProps) {
                 type: e.target.value as PropertyFilterState["type"],
               })
             }
-            className="min-h-[44px] w-full rounded-xl border border-sand bg-ivory px-3 text-sm text-basalt"
+            className="min-h-[44px] w-full rounded-xl border border-border bg-surface-elevated px-3 text-sm text-ink"
           >
             {TYPE_OPTIONS.map((opt) => (
               <option key={opt.value} value={opt.value}>
@@ -243,7 +243,7 @@ export function PropertiesCatalogue({ items }: PropertiesCatalogueProps) {
             id="filter-city"
             value={filters.city}
             onChange={(e) => updateFilters({ city: e.target.value })}
-            className="min-h-[44px] w-full rounded-xl border border-sand bg-ivory px-3 text-sm text-basalt"
+            className="min-h-[44px] w-full rounded-xl border border-border bg-surface-elevated px-3 text-sm text-ink"
           >
             <option value="all">All cities</option>
             {cities.map((c) => (
@@ -265,7 +265,7 @@ export function PropertiesCatalogue({ items }: PropertiesCatalogueProps) {
             id="filter-beds"
             value={filters.bedrooms}
             onChange={(e) => updateFilters({ bedrooms: e.target.value })}
-            className="min-h-[44px] w-full rounded-xl border border-sand bg-ivory px-3 text-sm text-basalt"
+            className="min-h-[44px] w-full rounded-xl border border-border bg-surface-elevated px-3 text-sm text-ink"
           >
             {BEDROOM_OPTIONS.map((opt) => (
               <option key={opt.value} value={opt.value}>
@@ -276,7 +276,7 @@ export function PropertiesCatalogue({ items }: PropertiesCatalogueProps) {
         </div>
       </div>
 
-      <div className="space-y-3 border-t border-sand pt-4">
+      <div className="space-y-3 border-t border-border pt-4">
         <p className="text-xs font-medium uppercase tracking-[0.16em] text-stone">
           Price Range (₦)
         </p>
@@ -293,7 +293,7 @@ export function PropertiesCatalogue({ items }: PropertiesCatalogueProps) {
               placeholder="Min ₦"
               value={filters.minPrice}
               onChange={(e) => updateFilters({ minPrice: e.target.value })}
-              className="min-h-[44px] w-full rounded-xl border border-sand bg-ivory px-3 text-sm text-basalt placeholder:text-stone"
+              className="min-h-[44px] w-full rounded-xl border border-border bg-surface-elevated px-3 text-sm text-ink placeholder:text-stone"
             />
           </div>
           <div>
@@ -308,7 +308,7 @@ export function PropertiesCatalogue({ items }: PropertiesCatalogueProps) {
               placeholder="Max ₦"
               value={filters.maxPrice}
               onChange={(e) => updateFilters({ maxPrice: e.target.value })}
-              className="min-h-[44px] w-full rounded-xl border border-sand bg-ivory px-3 text-sm text-basalt placeholder:text-stone"
+              className="min-h-[44px] w-full rounded-xl border border-border bg-surface-elevated px-3 text-sm text-ink placeholder:text-stone"
             />
           </div>
         </div>
@@ -326,8 +326,8 @@ export function PropertiesCatalogue({ items }: PropertiesCatalogueProps) {
                 }
                 className={`min-h-[36px] rounded-full border px-3 text-xs transition-colors ${
                   active
-                    ? "border-basalt bg-basalt text-ivory"
-                    : "border-sand bg-ivory text-basalt hover:border-basalt"
+                    ? "border-ink bg-ink text-surface"
+                    : "border-border bg-surface-elevated text-ink hover:border-ink"
                 }`}
               >
                 {preset.label}
@@ -357,7 +357,7 @@ export function PropertiesCatalogue({ items }: PropertiesCatalogueProps) {
             value={filters.q}
             onChange={(e) => updateFilters({ q: e.target.value })}
             placeholder="Search by title, area (e.g. Ikoyi, Maitama), or city..."
-            className="min-h-[48px] w-full rounded-full border border-sand bg-ivory pr-4 pl-11 text-sm text-basalt placeholder:text-stone"
+            className="min-h-[48px] w-full rounded-full border border-border bg-surface-elevated pr-4 pl-11 text-sm text-ink placeholder:text-stone"
           />
         </div>
 
@@ -365,7 +365,7 @@ export function PropertiesCatalogue({ items }: PropertiesCatalogueProps) {
           <button
             type="button"
             onClick={() => setSheetOpen(true)}
-            className="inline-flex min-h-[48px] items-center gap-2 rounded-full border border-sand bg-ivory px-5 text-sm font-medium text-basalt lg:hidden"
+            className="inline-flex min-h-[48px] items-center gap-2 rounded-full border border-border bg-surface-elevated px-5 text-sm font-medium text-ink lg:hidden"
           >
             <SlidersHorizontal className="h-4 w-4" aria-hidden="true" />
             <span>Filters</span>
@@ -386,7 +386,7 @@ export function PropertiesCatalogue({ items }: PropertiesCatalogueProps) {
               onChange={(e) =>
                 updateFilters({ sort: e.target.value as PropertySort })
               }
-              className="min-h-[48px] rounded-full border border-sand bg-ivory px-5 text-sm text-basalt"
+              className="min-h-[48px] rounded-full border border-border bg-surface-elevated px-5 text-sm text-ink"
             >
               <option value="newest">Sort: Newest</option>
               <option value="price-asc">Price: Low to High</option>
@@ -404,7 +404,7 @@ export function PropertiesCatalogue({ items }: PropertiesCatalogueProps) {
               key={chip.key}
               type="button"
               onClick={chip.onClear}
-              className="inline-flex min-h-[36px] items-center gap-1.5 rounded-full border border-sand bg-sand/40 px-3.5 text-xs text-basalt hover:border-basalt"
+              className="inline-flex min-h-[36px] items-center gap-1.5 rounded-full border border-border bg-surface-muted/40 px-3.5 text-xs text-ink hover:border-ink"
             >
               <span>{chip.label}</span>
               <X className="h-3.5 w-3.5" aria-hidden="true" />
@@ -414,7 +414,7 @@ export function PropertiesCatalogue({ items }: PropertiesCatalogueProps) {
             <button
               type="button"
               onClick={clearAll}
-              className="min-h-[36px] px-2 text-xs font-medium text-dusk underline-offset-4 hover:underline"
+              className="min-h-[36px] px-2 text-xs font-medium text-dusk-ink underline-offset-4 hover:underline"
             >
               Clear all
             </button>
@@ -433,16 +433,16 @@ export function PropertiesCatalogue({ items }: PropertiesCatalogueProps) {
           aria-label="Property filters"
           className="hidden lg:col-span-3 lg:block"
         >
-          <div className="sticky top-28 rounded-[20px] border border-sand bg-ivory p-6">
+          <div className="sticky top-28 rounded-[20px] border border-border bg-surface-elevated p-6">
             <div className="mb-5 flex items-center justify-between">
-              <h2 className="font-display text-2xl tracking-tight text-basalt">
+              <h2 className="font-display text-2xl tracking-tight text-ink">
                 Filter
               </h2>
               {JSON.stringify(filters) !== JSON.stringify(DEFAULT_FILTERS) && (
                 <button
                   type="button"
                   onClick={clearAll}
-                  className="text-xs font-medium text-dusk hover:underline"
+                  className="text-xs font-medium text-dusk-ink hover:underline"
                 >
                   Reset
                 </button>
@@ -454,9 +454,9 @@ export function PropertiesCatalogue({ items }: PropertiesCatalogueProps) {
 
         <div className="lg:col-span-9">
           {results.length === 0 ? (
-            <div className="flex flex-col items-center justify-center rounded-[20px] border border-sand bg-ivory px-6 py-20 text-center">
+            <div className="flex flex-col items-center justify-center rounded-[20px] border border-border bg-surface-elevated px-6 py-20 text-center">
               <Building2 className="h-10 w-10 text-stone" aria-hidden="true" />
-              <h2 className="mt-4 font-display text-3xl tracking-tight text-basalt">
+              <h2 className="mt-4 font-display text-3xl tracking-tight text-ink">
                 No matching properties
               </h2>
               <p className="mt-2 max-w-md text-sm text-stone">
@@ -482,14 +482,14 @@ export function PropertiesCatalogue({ items }: PropertiesCatalogueProps) {
           {totalPages > 1 && (
             <nav
               aria-label="Pagination"
-              className="mt-12 flex flex-wrap items-center justify-center gap-2 border-t border-sand pt-8"
+              className="mt-12 flex flex-wrap items-center justify-center gap-2 border-t border-border pt-8"
             >
               <button
                 type="button"
                 onClick={() => goToPage(currentPage - 1)}
                 disabled={currentPage <= 1}
                 aria-label="Previous page"
-                className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center gap-1 rounded-full border border-sand bg-ivory px-4 text-sm text-basalt transition-colors hover:border-basalt disabled:pointer-events-none disabled:opacity-40"
+                className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center gap-1 rounded-full border border-border bg-surface-elevated px-4 text-sm text-ink transition-colors hover:border-ink disabled:pointer-events-none disabled:opacity-40"
               >
                 <ChevronLeft className="h-4 w-4" aria-hidden="true" />
                 <span className="hidden sm:inline">Previous</span>
@@ -506,8 +506,8 @@ export function PropertiesCatalogue({ items }: PropertiesCatalogueProps) {
                     aria-current={isCurrent ? "page" : undefined}
                     className={`inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full border px-3.5 text-sm font-medium transition-colors ${
                       isCurrent
-                        ? "border-basalt bg-basalt text-ivory"
-                        : "border-sand bg-ivory text-basalt hover:border-basalt"
+                        ? "border-ink bg-ink text-surface"
+                        : "border-border bg-surface-elevated text-ink hover:border-ink"
                     }`}
                   >
                     {pageNum}
@@ -520,7 +520,7 @@ export function PropertiesCatalogue({ items }: PropertiesCatalogueProps) {
                 onClick={() => goToPage(currentPage + 1)}
                 disabled={currentPage >= totalPages}
                 aria-label="Next page"
-                className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center gap-1 rounded-full border border-sand bg-ivory px-4 text-sm text-basalt transition-colors hover:border-basalt disabled:pointer-events-none disabled:opacity-40"
+                className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center gap-1 rounded-full border border-border bg-surface-elevated px-4 text-sm text-ink transition-colors hover:border-ink disabled:pointer-events-none disabled:opacity-40"
               >
                 <span className="hidden sm:inline">Next</span>
                 <ChevronRight className="h-4 w-4" aria-hidden="true" />
@@ -540,10 +540,10 @@ export function PropertiesCatalogue({ items }: PropertiesCatalogueProps) {
           onClick={() => setSheetOpen(false)}
         >
           <div
-            className="max-h-[85vh] w-full overflow-y-auto rounded-t-[28px] bg-ivory p-6 pb-8 text-basalt shadow-xl"
+            className="max-h-[85vh] w-full overflow-y-auto rounded-t-[28px] bg-surface-elevated p-6 pb-8 text-ink shadow-xl"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="mb-5 flex items-center justify-between border-b border-sand pb-4">
+            <div className="mb-5 flex items-center justify-between border-b border-border pb-4">
               <h2 className="font-display text-2xl tracking-tight">
                 Filter properties
               </h2>
@@ -551,7 +551,7 @@ export function PropertiesCatalogue({ items }: PropertiesCatalogueProps) {
                 type="button"
                 onClick={() => setSheetOpen(false)}
                 aria-label="Close filters"
-                className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full hover:bg-sand/50"
+                className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full hover:bg-border/50"
               >
                 <X className="h-5 w-5" aria-hidden="true" />
               </button>
@@ -559,14 +559,14 @@ export function PropertiesCatalogue({ items }: PropertiesCatalogueProps) {
 
             {filterControls}
 
-            <div className="mt-6 flex items-center gap-3 border-t border-sand pt-4">
+            <div className="mt-6 flex items-center gap-3 border-t border-border pt-4">
               <button
                 type="button"
                 onClick={() => {
                   clearAll();
                   setSheetOpen(false);
                 }}
-                className="min-h-[48px] flex-1 rounded-full border border-sand text-sm font-medium text-basalt"
+                className="min-h-[48px] flex-1 rounded-full border border-border text-sm font-medium text-ink"
               >
                 Clear all
               </button>

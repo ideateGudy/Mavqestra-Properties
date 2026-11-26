@@ -10,13 +10,13 @@ export const metadata: Metadata = {
 
 export default function ValuationPage() {
   return (
-    <main className="min-h-screen bg-ivory pt-32 pb-24 text-basalt">
+    <main className="min-h-screen bg-surface pt-32 pb-24 text-ink">
       <div className="mx-auto max-w-5xl space-y-12 px-6 md:px-10">
-        <header className="space-y-4 border-b border-sand pb-10">
-          <p className="text-xs font-medium uppercase tracking-[0.24em] text-dusk">
+        <header className="space-y-4 border-b border-border pb-10">
+          <p className="text-xs font-medium uppercase tracking-[0.24em] text-dusk-ink">
             Sell with MAVQESTRA
           </p>
-          <h1 className="font-display text-4xl leading-[1.05] tracking-tight text-basalt md:text-6xl">
+          <h1 className="font-display text-4xl leading-[1.05] tracking-tight text-ink md:text-6xl">
             Find out what your property is worth.
           </h1>
           <p className="max-w-2xl text-base leading-relaxed text-stone">
@@ -28,9 +28,9 @@ export default function ValuationPage() {
             {siteConfig.valuationReassurances.map((item) => (
               <div
                 key={item.title}
-                className="rounded-[20px] border border-sand bg-ivory p-5"
+                className="rounded-[20px] border border-border bg-surface-elevated p-5"
               >
-                <p className="font-display text-xl text-basalt">{item.title}</p>
+                <p className="font-display text-xl text-ink">{item.title}</p>
                 <p className="mt-1 text-xs leading-relaxed text-stone">
                   {item.description}
                 </p>

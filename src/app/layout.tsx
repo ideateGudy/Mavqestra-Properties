@@ -48,12 +48,17 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
+  const themeScript = `(function(){try{var t=localStorage.getItem('theme');var d=t==='dark'||(!t&&window.matchMedia('(prefers-color-scheme: dark)').matches);if(d)document.documentElement.classList.add('dark');}catch(e){}})();`;
+
   return (
     <html
       lang="en"
+      data-scroll-behavior="smooth"
+      suppressHydrationWarning
       className={`${instrumentSerif.variable} ${geistSans.variable} h-full antialiased`}
     >
       <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <link
           rel="preload"
           as="image"
@@ -61,7 +66,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           fetchPriority="high"
         />
       </head>
-      <body className="min-h-full flex flex-col bg-ivory text-basalt font-sans selection:bg-ember/20 selection:text-basalt">
+      <body className="min-h-full flex flex-col bg-surface text-ink font-sans selection:bg-ember/20 selection:text-ink">
         <Navbar />
         <RouteTransition>{children}</RouteTransition>
         <Footer />

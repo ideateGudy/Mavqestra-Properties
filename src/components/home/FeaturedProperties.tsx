@@ -10,17 +10,17 @@ export function FeaturedProperties() {
   return (
     <section
       aria-labelledby="featured-heading"
-      className="border-t border-sand bg-ivory py-[clamp(5rem,10vw,9rem)] text-basalt"
+      className="border-t border-border bg-surface py-[clamp(5rem,10vw,9rem)] text-ink"
     >
       <div className="mx-auto max-w-7xl px-6 md:px-10">
         <Reveal className="mb-12 flex flex-col justify-between gap-6 md:flex-row md:items-end">
           <div className="space-y-3">
-            <p className="text-xs font-medium uppercase tracking-[0.24em] text-dusk">
+            <p className="text-xs font-medium uppercase tracking-[0.24em] text-dusk-ink">
               Selected Portfolio
             </p>
             <h2
               id="featured-heading"
-              className="font-display text-4xl leading-[1.06] tracking-tight text-basalt md:text-5xl"
+              className="font-display text-4xl leading-[1.06] tracking-tight text-ink md:text-5xl"
             >
               Featured properties
             </h2>
@@ -28,7 +28,7 @@ export function FeaturedProperties() {
 
           <Link
             href="/properties"
-            className="inline-flex min-h-[44px] items-center gap-2 self-start rounded-full border border-basalt/20 px-6 text-sm font-medium text-basalt transition-colors hover:border-ember hover:bg-ember md:self-auto"
+            className="inline-flex min-h-[44px] items-center gap-2 self-start rounded-full border border-ink/20 px-6 text-sm font-medium text-ink transition-colors hover:border-ember hover:bg-ember hover:text-basalt md:self-auto"
           >
             <span>View all properties</span>
             <ArrowRight className="h-4 w-4" aria-hidden="true" />

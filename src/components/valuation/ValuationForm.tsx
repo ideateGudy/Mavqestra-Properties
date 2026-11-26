@@ -132,12 +132,12 @@ export function ValuationForm() {
 
   if (submittedUrl) {
     return (
-      <div className="space-y-6 rounded-[28px] border border-sand bg-ivory p-8 md:p-12">
-        <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-dusk text-ivory">
+      <div className="space-y-6 rounded-[28px] border border-border bg-surface-elevated p-8 md:p-12">
+        <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-dusk text-surface">
           <Check className="h-6 w-6" aria-hidden="true" />
         </div>
         <div className="space-y-2">
-          <h2 className="font-display text-3xl tracking-tight text-basalt md:text-4xl">
+          <h2 className="font-display text-3xl tracking-tight text-ink md:text-4xl">
             Valuation brief ready in WhatsApp
           </h2>
           <p className="max-w-xl text-sm leading-relaxed text-stone">
@@ -160,7 +160,7 @@ export function ValuationForm() {
           <button
             type="button"
             onClick={handleCopy}
-            className="inline-flex min-h-[48px] items-center gap-2 rounded-full border border-sand bg-ivory px-6 text-sm font-medium text-basalt hover:border-basalt"
+            className="inline-flex min-h-[48px] items-center gap-2 rounded-full border border-border bg-surface-elevated px-6 text-sm font-medium text-ink hover:border-ink"
           >
             <Copy className="h-4 w-4" aria-hidden="true" />
             <span>{copied ? "Copied details" : "Copy details"}</span>
@@ -172,7 +172,7 @@ export function ValuationForm() {
               setSubmittedUrl(null);
               setStep(1);
             }}
-            className="min-h-[48px] px-4 text-sm text-dusk underline-offset-4 hover:underline"
+            className="min-h-[48px] px-4 text-sm text-dusk-ink underline-offset-4 hover:underline"
           >
             Start another request
           </button>
@@ -185,7 +185,7 @@ export function ValuationForm() {
     <form
       onSubmit={handleSubmit}
       noValidate
-      className="space-y-8 rounded-[28px] border border-sand bg-ivory p-6 md:p-10"
+      className="space-y-8 rounded-[28px] border border-border bg-surface-elevated p-6 md:p-10"
     >
       {/* Progress indicator */}
       <nav aria-label="Valuation form steps">
@@ -197,12 +197,12 @@ export function ValuationForm() {
               <li key={item.id} className="space-y-2">
                 <div
                   className={`h-1.5 rounded-full transition-colors ${
-                    active || completed ? "bg-ember" : "bg-sand"
+                    active || completed ? "bg-ember" : "bg-border"
                   }`}
                 />
                 <p
                   className={`text-xs font-medium ${
-                    active ? "text-basalt" : "text-stone"
+                    active ? "text-ink" : "text-stone"
                   }`}
                 >
                   <span className="sr-only">Step </span>
@@ -217,7 +217,7 @@ export function ValuationForm() {
       {/* Step 1: Property */}
       {step === 1 && (
         <fieldset className="space-y-5">
-          <legend className="font-display text-3xl tracking-tight text-basalt">
+          <legend className="font-display text-3xl tracking-tight text-ink">
             Tell us about the property
           </legend>
 
@@ -233,7 +233,7 @@ export function ValuationForm() {
                 id="val-type"
                 value={data.propertyType}
                 onChange={(e) => updateField("propertyType", e.target.value)}
-                className="min-h-[48px] w-full rounded-xl border border-sand bg-ivory px-4 text-sm text-basalt"
+                className="min-h-[48px] w-full rounded-xl border border-border bg-surface-elevated px-4 text-sm text-ink"
               >
                 <option value="detached">Detached House</option>
                 <option value="duplex">Duplex</option>
@@ -256,7 +256,7 @@ export function ValuationForm() {
                 value={data.state}
                 onChange={(e) => updateField("state", e.target.value)}
                 aria-invalid={Boolean(errors.state)}
-                className="min-h-[48px] w-full rounded-xl border border-sand bg-ivory px-4 text-sm text-basalt"
+                className="min-h-[48px] w-full rounded-xl border border-border bg-surface-elevated px-4 text-sm text-ink"
               >
                 {NIGERIAN_STATES.map((st) => (
                   <option key={st} value={st}>
@@ -285,7 +285,7 @@ export function ValuationForm() {
                 onChange={(e) => updateField("city", e.target.value)}
                 aria-invalid={Boolean(errors.city)}
                 aria-describedby={errors.city ? "err-city" : undefined}
-                className="min-h-[48px] w-full rounded-xl border border-sand bg-ivory px-4 text-sm text-basalt placeholder:text-stone"
+                className="min-h-[48px] w-full rounded-xl border border-border bg-surface-elevated px-4 text-sm text-ink placeholder:text-stone"
               />
               {errors.city && (
                 <p id="err-city" className="mt-1 text-xs text-red-700">
@@ -310,7 +310,7 @@ export function ValuationForm() {
                 onChange={(e) => updateField("area", e.target.value)}
                 aria-invalid={Boolean(errors.area)}
                 aria-describedby={errors.area ? "err-area" : undefined}
-                className="min-h-[48px] w-full rounded-xl border border-sand bg-ivory px-4 text-sm text-basalt placeholder:text-stone"
+                className="min-h-[48px] w-full rounded-xl border border-border bg-surface-elevated px-4 text-sm text-ink placeholder:text-stone"
               />
               {errors.area && (
                 <p id="err-area" className="mt-1 text-xs text-red-700">
@@ -330,7 +330,7 @@ export function ValuationForm() {
                 id="val-bedrooms"
                 value={data.bedrooms}
                 onChange={(e) => updateField("bedrooms", e.target.value)}
-                className="min-h-[48px] w-full rounded-xl border border-sand bg-ivory px-4 text-sm text-basalt"
+                className="min-h-[48px] w-full rounded-xl border border-border bg-surface-elevated px-4 text-sm text-ink"
               >
                 <option value="">Not applicable (Land / Commercial)</option>
                 <option value="1">1</option>
@@ -357,7 +357,7 @@ export function ValuationForm() {
                 placeholder="e.g. 650"
                 value={data.sizeSqm}
                 onChange={(e) => updateField("sizeSqm", e.target.value)}
-                className="min-h-[48px] w-full rounded-xl border border-sand bg-ivory px-4 text-sm text-basalt placeholder:text-stone"
+                className="min-h-[48px] w-full rounded-xl border border-border bg-surface-elevated px-4 text-sm text-ink placeholder:text-stone"
               />
             </div>
 
@@ -372,7 +372,7 @@ export function ValuationForm() {
                 id="val-condition"
                 value={data.condition}
                 onChange={(e) => updateField("condition", e.target.value)}
-                className="min-h-[48px] w-full rounded-xl border border-sand bg-ivory px-4 text-sm text-basalt"
+                className="min-h-[48px] w-full rounded-xl border border-border bg-surface-elevated px-4 text-sm text-ink"
               >
                 <option value="newly-built">Newly built</option>
                 <option value="renovated">Recently renovated</option>
@@ -387,7 +387,7 @@ export function ValuationForm() {
       {/* Step 2: Details */}
       {step === 2 && (
         <fieldset className="space-y-5">
-          <legend className="font-display text-3xl tracking-tight text-basalt">
+          <legend className="font-display text-3xl tracking-tight text-ink">
             Valuation context
           </legend>
 
@@ -411,7 +411,7 @@ export function ValuationForm() {
                 aria-describedby={
                   errors.expectedPrice ? "err-price" : undefined
                 }
-                className="min-h-[48px] w-full rounded-xl border border-sand bg-ivory px-4 text-sm text-basalt placeholder:text-stone"
+                className="min-h-[48px] w-full rounded-xl border border-border bg-surface-elevated px-4 text-sm text-ink placeholder:text-stone"
               />
               {errors.expectedPrice && (
                 <p id="err-price" className="mt-1 text-xs text-red-700">
@@ -431,7 +431,7 @@ export function ValuationForm() {
                 id="val-timeline"
                 value={data.timeline}
                 onChange={(e) => updateField("timeline", e.target.value)}
-                className="min-h-[48px] w-full rounded-xl border border-sand bg-ivory px-4 text-sm text-basalt"
+                className="min-h-[48px] w-full rounded-xl border border-border bg-surface-elevated px-4 text-sm text-ink"
               >
                 <option value="within 30 days">Ready to sell within 30 days</option>
                 <option value="1-3 months">Planning sale in 1–3 months</option>
@@ -453,7 +453,7 @@ export function ValuationForm() {
                 placeholder="Title document type (e.g. C of O, Governor's Consent), recent upgrades, or preferred viewing hours..."
                 value={data.notes}
                 onChange={(e) => updateField("notes", e.target.value)}
-                className="w-full rounded-xl border border-sand bg-ivory p-4 text-sm text-basalt placeholder:text-stone"
+                className="w-full rounded-xl border border-border bg-surface-elevated p-4 text-sm text-ink placeholder:text-stone"
               />
             </div>
           </div>
@@ -463,7 +463,7 @@ export function ValuationForm() {
       {/* Step 3: Contact */}
       {step === 3 && (
         <fieldset className="space-y-5">
-          <legend className="font-display text-3xl tracking-tight text-basalt">
+          <legend className="font-display text-3xl tracking-tight text-ink">
             Your contact details
           </legend>
 
@@ -485,7 +485,7 @@ export function ValuationForm() {
                 onChange={(e) => updateField("name", e.target.value)}
                 aria-invalid={Boolean(errors.name)}
                 aria-describedby={errors.name ? "err-name" : undefined}
-                className="min-h-[48px] w-full rounded-xl border border-sand bg-ivory px-4 text-sm text-basalt placeholder:text-stone"
+                className="min-h-[48px] w-full rounded-xl border border-border bg-surface-elevated px-4 text-sm text-ink placeholder:text-stone"
               />
               {errors.name && (
                 <p id="err-name" className="mt-1 text-xs text-red-700">
@@ -511,7 +511,7 @@ export function ValuationForm() {
                 onChange={(e) => updateField("phone", e.target.value)}
                 aria-invalid={Boolean(errors.phone)}
                 aria-describedby={errors.phone ? "err-phone" : undefined}
-                className="min-h-[48px] w-full rounded-xl border border-sand bg-ivory px-4 text-sm text-basalt placeholder:text-stone"
+                className="min-h-[48px] w-full rounded-xl border border-border bg-surface-elevated px-4 text-sm text-ink placeholder:text-stone"
               />
               {errors.phone && (
                 <p id="err-phone" className="mt-1 text-xs text-red-700">
@@ -536,7 +536,7 @@ export function ValuationForm() {
                 onChange={(e) => updateField("email", e.target.value)}
                 aria-invalid={Boolean(errors.email)}
                 aria-describedby={errors.email ? "err-email" : undefined}
-                className="min-h-[48px] w-full rounded-xl border border-sand bg-ivory px-4 text-sm text-basalt placeholder:text-stone"
+                className="min-h-[48px] w-full rounded-xl border border-border bg-surface-elevated px-4 text-sm text-ink placeholder:text-stone"
               />
               {errors.email && (
                 <p id="err-email" className="mt-1 text-xs text-red-700">
@@ -546,7 +546,7 @@ export function ValuationForm() {
             </div>
 
             <div className="sm:col-span-2">
-              <label className="flex min-h-[44px] cursor-pointer items-start gap-3 rounded-xl border border-sand p-4">
+              <label className="flex min-h-[44px] cursor-pointer items-start gap-3 rounded-xl border border-border p-4">
                 <input
                   id="val-consent"
                   type="checkbox"
@@ -556,7 +556,7 @@ export function ValuationForm() {
                   aria-describedby={errors.consent ? "err-consent" : undefined}
                   className="mt-1 h-4 w-4 accent-ember"
                 />
-                <span className="text-xs leading-relaxed text-basalt/85">
+                <span className="text-xs leading-relaxed text-ink/85">
                   I consent to MAVQESTRA PROPERTIES using these details in
                   WhatsApp to prepare my valuation in accordance with the
                   Nigeria Data Protection Act (NDPA).{" "}
@@ -578,16 +578,16 @@ export function ValuationForm() {
       {/* Step 4: Review */}
       {step === 4 && (
         <div className="space-y-6">
-          <h2 className="font-display text-3xl tracking-tight text-basalt">
+          <h2 className="font-display text-3xl tracking-tight text-ink">
             Review your valuation brief
           </h2>
 
-          <dl className="grid gap-4 rounded-[20px] border border-sand bg-sand/20 p-6 text-sm sm:grid-cols-2">
+          <dl className="grid gap-4 rounded-[20px] border border-border bg-surface-muted/20 p-6 text-sm sm:grid-cols-2">
             <div>
               <dt className="text-xs uppercase tracking-wider text-stone">
                 Property
               </dt>
-              <dd className="mt-1 font-medium text-basalt">
+              <dd className="mt-1 font-medium text-ink">
                 {data.propertyType} · {data.condition}
                 {data.bedrooms ? ` · ${data.bedrooms} bed` : ""}
                 {data.sizeSqm ? ` · ${data.sizeSqm} m²` : ""}
@@ -597,7 +597,7 @@ export function ValuationForm() {
               <dt className="text-xs uppercase tracking-wider text-stone">
                 Location
               </dt>
-              <dd className="mt-1 font-medium text-basalt">
+              <dd className="mt-1 font-medium text-ink">
                 {data.area}, {data.city}, {data.state}
               </dd>
             </div>
@@ -605,7 +605,7 @@ export function ValuationForm() {
               <dt className="text-xs uppercase tracking-wider text-stone">
                 Expected Price
               </dt>
-              <dd className="mt-1 font-medium text-basalt">
+              <dd className="mt-1 font-medium text-ink">
                 {data.expectedPrice.trim()
                   ? formatNaira(Number(data.expectedPrice))
                   : "Not specified"}
@@ -615,13 +615,13 @@ export function ValuationForm() {
               <dt className="text-xs uppercase tracking-wider text-stone">
                 Timeline
               </dt>
-              <dd className="mt-1 font-medium text-basalt">{data.timeline}</dd>
+              <dd className="mt-1 font-medium text-ink">{data.timeline}</dd>
             </div>
             <div>
               <dt className="text-xs uppercase tracking-wider text-stone">
                 Contact
               </dt>
-              <dd className="mt-1 font-medium text-basalt">
+              <dd className="mt-1 font-medium text-ink">
                 {data.name} · {normalizeNigerianPhone(data.phone)}
                 {data.email ? ` · ${data.email}` : ""}
               </dd>
@@ -631,7 +631,7 @@ export function ValuationForm() {
                 <dt className="text-xs uppercase tracking-wider text-stone">
                   Notes
                 </dt>
-                <dd className="mt-1 text-basalt/85">{data.notes}</dd>
+                <dd className="mt-1 text-ink/85">{data.notes}</dd>
               </div>
             )}
           </dl>
@@ -639,12 +639,12 @@ export function ValuationForm() {
       )}
 
       {/* Navigation buttons */}
-      <div className="flex items-center justify-between border-t border-sand pt-6">
+      <div className="flex items-center justify-between border-t border-border pt-6">
         {step > 1 ? (
           <button
             type="button"
             onClick={handleBack}
-            className="inline-flex min-h-[48px] items-center gap-2 rounded-full border border-sand bg-ivory px-6 text-sm font-medium text-basalt hover:border-basalt"
+            className="inline-flex min-h-[48px] items-center gap-2 rounded-full border border-border bg-surface-elevated px-6 text-sm font-medium text-ink hover:border-ink"
           >
             <ArrowLeft className="h-4 w-4" aria-hidden="true" />
             <span>Back</span>

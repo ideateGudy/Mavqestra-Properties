@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 import { Logo } from "@/components/Logo";
+import { ThemeToggle } from "@/components/layout/ThemeToggle";
 import { siteConfig } from "@/config/site";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import { gsap, useGSAP } from "@/lib/gsap";
@@ -115,7 +116,7 @@ export function Navbar() {
           className={`flex items-center justify-between rounded-full border px-4 py-2 transition-colors duration-300 ${
             isOverHero
               ? "border-ivory/20 bg-basalt/45 text-ivory backdrop-blur-md"
-              : "border-sand bg-ivory/95 text-basalt shadow-sm backdrop-blur-md"
+              : "border-border bg-surface/95 text-ink shadow-sm backdrop-blur-md"
           }`}
         >
           <Link
@@ -125,7 +126,7 @@ export function Navbar() {
           >
             <Logo
               variant="full"
-              tone={isOverHero ? "light" : "dark"}
+              tone={isOverHero ? "light" : "auto"}
               className="text-[13px] sm:text-[14px]"
             />
           </Link>
@@ -144,10 +145,10 @@ export function Navbar() {
                       active
                         ? isOverHero
                           ? "bg-ivory/15 text-ivory font-medium"
-                          : "bg-sand/70 text-basalt font-medium"
+                          : "bg-surface-muted/70 text-ink font-medium"
                         : isOverHero
                           ? "text-ivory/80 hover:text-ivory"
-                          : "text-basalt/75 hover:text-basalt"
+                          : "text-ink/75 hover:text-ink"
                     }`}
                   >
                     {link.label}
@@ -157,7 +158,8 @@ export function Navbar() {
             })}
           </ul>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5">
+            <ThemeToggle isOverHero={isOverHero} />
             <a
               href={consultationUrl}
               target="_blank"
@@ -177,7 +179,7 @@ export function Navbar() {
               className={`inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full transition-colors md:hidden ${
                 isOverHero
                   ? "text-ivory hover:bg-ivory/10"
-                  : "text-basalt hover:bg-sand/60"
+                  : "text-ink hover:bg-surface-muted/60"
               }`}
             >
               {menuOpen ? (

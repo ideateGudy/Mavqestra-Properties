@@ -25,20 +25,20 @@ export function FinalCtaSection() {
     <section
       ref={sectionRef}
       aria-labelledby="final-cta-heading"
-      className="border-t border-sand bg-sand/30 py-[clamp(5rem,10vw,9rem)] text-basalt"
+      className="border-t border-border bg-surface-muted/35 py-[clamp(5rem,10vw,9rem)] text-ink"
     >
       <div className="mx-auto grid max-w-7xl items-end gap-12 px-6 md:px-10 lg:grid-cols-12">
         <div className="space-y-6 lg:col-span-7">
           <p
             data-final-reveal
-            className="text-xs font-medium uppercase tracking-[0.24em] text-dusk"
+            className="text-xs font-medium uppercase tracking-[0.24em] text-dusk-ink"
           >
             Private Advisory
           </p>
           <h2
             id="final-cta-heading"
             data-final-reveal
-            className="font-display text-4xl leading-[1.03] tracking-tight text-basalt md:text-6xl"
+            className="font-display text-4xl leading-[1.03] tracking-tight text-ink md:text-6xl"
           >
             Begin a quiet conversation about your next home.
           </h2>
@@ -57,33 +57,33 @@ export function FinalCtaSection() {
 
         <div
           data-final-reveal
-          className="space-y-4 rounded-[20px] border border-sand bg-ivory p-7 lg:col-span-5"
+          className="space-y-4 rounded-[20px] border border-border bg-surface-elevated p-7 lg:col-span-5"
         >
           <p className="text-xs font-medium uppercase tracking-[0.2em] text-stone">
             Direct Desk
           </p>
-          <div className="space-y-3 text-sm text-basalt">
+          <div className="space-y-3 text-sm text-ink">
             <p className="flex items-start gap-3">
               <MapPin
-                className="mt-0.5 h-4 w-4 shrink-0 text-dusk"
+                className="mt-0.5 h-4 w-4 shrink-0 text-dusk-ink"
                 aria-hidden="true"
               />
               <span>{siteConfig.address}</span>
             </p>
             <p className="flex items-center gap-3">
-              <Phone className="h-4 w-4 shrink-0 text-dusk" aria-hidden="true" />
+              <Phone className="h-4 w-4 shrink-0 text-dusk-ink" aria-hidden="true" />
               <a
                 href={`tel:${siteConfig.phoneDisplay.replace(/\s+/g, "")}`}
-                className="inline-flex min-h-[44px] items-center hover:text-dusk"
+                className="inline-flex min-h-[44px] items-center hover:text-dusk-ink"
               >
                 {siteConfig.phoneDisplay}
               </a>
             </p>
             <p className="flex items-center gap-3">
-              <Mail className="h-4 w-4 shrink-0 text-dusk" aria-hidden="true" />
+              <Mail className="h-4 w-4 shrink-0 text-dusk-ink" aria-hidden="true" />
               <a
                 href={`mailto:${siteConfig.email}`}
-                className="inline-flex min-h-[44px] items-center hover:text-dusk"
+                className="inline-flex min-h-[44px] items-center hover:text-dusk-ink"
               >
                 {siteConfig.email}
               </a>

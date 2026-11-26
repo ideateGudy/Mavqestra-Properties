@@ -64,18 +64,18 @@ export function ServicesProcessSection() {
     <section
       ref={sectionRef}
       aria-labelledby="services-heading"
-      className="border-t border-sand bg-ivory py-[clamp(5rem,10vw,9rem)] text-basalt"
+      className="border-t border-border bg-surface py-[clamp(5rem,10vw,9rem)] text-ink"
     >
       <div className="mx-auto max-w-7xl space-y-24 px-6 md:px-10">
         {/* Services */}
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="space-y-4 lg:col-span-4">
-            <p className="text-xs font-medium uppercase tracking-[0.24em] text-dusk">
+            <p className="text-xs font-medium uppercase tracking-[0.24em] text-dusk-ink">
               Services
             </p>
             <h2
               id="services-heading"
-              className="font-display text-4xl leading-[1.06] tracking-tight text-basalt md:text-5xl"
+              className="font-display text-4xl leading-[1.06] tracking-tight text-ink md:text-5xl"
             >
               Advisory built around every stage.
             </h2>
@@ -85,7 +85,7 @@ export function ServicesProcessSection() {
             </p>
           </div>
 
-          <div data-services-list className="divide-y divide-sand lg:col-span-8">
+          <div data-services-list className="divide-y divide-border lg:col-span-8">
             {services.map((service, index) => {
               const href =
                 service.id === "valuation"
@@ -104,7 +104,7 @@ export function ServicesProcessSection() {
                       0{index + 1}
                     </span>
                     <div>
-                      <h3 className="font-display text-2xl tracking-tight text-basalt transition-transform duration-200 group-hover:translate-x-1 md:text-3xl">
+                      <h3 className="font-display text-2xl tracking-tight text-ink transition-transform duration-200 group-hover:translate-x-1 md:text-3xl">
                         {service.title}
                       </h3>
                       <p className="text-xs uppercase tracking-[0.18em] text-stone">
@@ -114,7 +114,7 @@ export function ServicesProcessSection() {
                   </div>
 
                   <div className="flex items-center justify-between gap-6 md:max-w-sm">
-                    <p className="text-sm leading-relaxed text-basalt/75 transition-colors group-hover:text-basalt">
+                    <p className="text-sm leading-relaxed text-ink/75 transition-colors group-hover:text-ink">
                       {service.detail}
                     </p>
                     <ArrowUpRight
@@ -148,13 +148,13 @@ export function ServicesProcessSection() {
         </div>
 
         {/* 4-Step Process */}
-        <div className="space-y-12 border-t border-sand pt-16">
+        <div className="space-y-12 border-t border-border pt-16">
           <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
             <div className="space-y-2">
-              <p className="text-xs font-medium uppercase tracking-[0.24em] text-dusk">
+              <p className="text-xs font-medium uppercase tracking-[0.24em] text-dusk-ink">
                 How It Works
               </p>
-              <h2 className="font-display text-4xl leading-[1.06] tracking-tight text-basalt md:text-5xl">
+              <h2 className="font-display text-4xl leading-[1.06] tracking-tight text-ink md:text-5xl">
                 Four quiet steps to closing.
               </h2>
             </div>
@@ -162,7 +162,7 @@ export function ServicesProcessSection() {
               href={buildWhatsAppUrl(siteConfig.defaultWhatsAppMessage)}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex min-h-[44px] items-center gap-2 self-start rounded-full border border-basalt/20 px-5 text-sm font-medium text-basalt transition-colors hover:border-ember hover:bg-ember md:self-auto"
+              className="inline-flex min-h-[44px] items-center gap-2 self-start rounded-full border border-ink/20 px-5 text-sm font-medium text-ink transition-colors hover:border-ember hover:bg-ember hover:text-basalt md:self-auto"
             >
               <span>Start with a consultation</span>
               <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
@@ -173,7 +173,7 @@ export function ServicesProcessSection() {
             {/* Scroll-linked progress line on desktop */}
             <div
               aria-hidden="true"
-              className="mb-8 hidden h-[2px] w-full overflow-hidden bg-sand md:block"
+              className="mb-8 hidden h-[2px] w-full overflow-hidden bg-border md:block"
             >
               <div
                 ref={lineRef}
@@ -186,15 +186,15 @@ export function ServicesProcessSection() {
                 <li
                   key={item.step}
                   data-process-step
-                  className="space-y-3 rounded-[20px] border border-sand bg-ivory p-6"
+                  className="space-y-3 rounded-[20px] border border-border bg-surface-elevated p-6"
                 >
                   <span className="inline-block font-mono text-xs font-medium tracking-widest text-ember">
                     STEP {item.step}
                   </span>
-                  <h3 className="font-display text-3xl tracking-tight text-basalt">
+                  <h3 className="font-display text-3xl tracking-tight text-ink">
                     {item.title}
                   </h3>
-                  <p className="text-sm leading-relaxed text-basalt/75">
+                  <p className="text-sm leading-relaxed text-ink/75">
                     {item.description}
                   </p>
                 </li>

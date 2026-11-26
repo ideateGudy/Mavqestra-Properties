@@ -35,7 +35,7 @@ export default function HomePage() {
   };
 
   return (
-    <main className="overflow-x-clip bg-ivory text-basalt">
+    <main className="overflow-x-clip bg-surface text-ink">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

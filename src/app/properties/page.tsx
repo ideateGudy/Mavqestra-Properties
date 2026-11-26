@@ -11,13 +11,13 @@ export const metadata: Metadata = {
 
 export default function PropertiesPage() {
   return (
-    <main className="min-h-screen bg-ivory pt-32 pb-24 text-basalt">
+    <main className="min-h-screen bg-surface pt-32 pb-24 text-ink">
       <div className="mx-auto max-w-7xl px-6 md:px-10">
-        <header className="mb-10 space-y-3 border-b border-sand pb-8">
-          <p className="text-xs font-medium uppercase tracking-[0.24em] text-dusk">
+        <header className="mb-10 space-y-3 border-b border-border pb-8">
+          <p className="text-xs font-medium uppercase tracking-[0.24em] text-dusk-ink">
             Portfolio
           </p>
-          <h1 className="font-display text-4xl leading-[1.05] tracking-tight text-basalt md:text-6xl">
+          <h1 className="font-display text-4xl leading-[1.05] tracking-tight text-ink md:text-6xl">
             Properties
           </h1>
         </header>

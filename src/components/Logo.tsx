@@ -2,7 +2,7 @@ import React from "react";
 
 export interface LogoProps {
   variant?: "full" | "mark";
-  tone?: "dark" | "light";
+  tone?: "dark" | "light" | "auto";
   className?: string;
 }
 
@@ -11,7 +11,12 @@ export function Logo({
   tone = "dark",
   className = "",
 }: LogoProps) {
-  const toneClass = tone === "light" ? "text-ivory" : "text-basalt";
+  const toneClass =
+    tone === "light"
+      ? "text-ivory"
+      : tone === "auto"
+        ? "text-ink"
+        : "text-basalt";
 
   return (
     <span

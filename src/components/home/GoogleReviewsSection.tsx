@@ -47,25 +47,25 @@ function ReviewCard({
 
   return (
     <article
-      className={`flex flex-col justify-between gap-4 rounded-[20px] border border-sand bg-ivory p-6 ${className}`}
+      className={`flex flex-col justify-between gap-4 rounded-[20px] border border-border bg-surface-elevated p-6 ${className}`}
     >
       <div className="space-y-3">
         <div className="flex items-center justify-between gap-3">
           <div className="flex items-center gap-3">
             <span
               aria-hidden="true"
-              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-sand/70 font-display text-lg text-basalt"
+              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-surface-muted/70 font-display text-lg text-ink"
             >
               {initial}
             </span>
             <div>
               <div className="flex items-center gap-1.5">
-                <p className="text-sm font-medium text-basalt">
+                <p className="text-sm font-medium text-ink">
                   {review.author}
                 </p>
                 {review.verified && (
                   <BadgeCheck
-                    className="h-4 w-4 text-dusk"
+                    className="h-4 w-4 text-dusk-ink"
                     aria-label="Verified review"
                   />
                 )}
@@ -82,7 +82,7 @@ function ReviewCard({
               <Star
                 key={i}
                 className={`h-3.5 w-3.5 ${
-                  i < review.rating ? "fill-ember text-ember" : "text-sand"
+                  i < review.rating ? "fill-ember text-ember" : "text-border"
                 }`}
                 aria-hidden="true"
               />
@@ -90,7 +90,7 @@ function ReviewCard({
           </div>
         </div>
 
-        <p className="line-clamp-3 text-sm leading-relaxed text-basalt/80">
+        <p className="line-clamp-3 text-sm leading-relaxed text-ink/80">
           {review.text}
         </p>
       </div>
@@ -98,7 +98,7 @@ function ReviewCard({
       <button
         type="button"
         onClick={() => onReadMore(review)}
-        className="min-h-[36px] self-start text-xs font-medium text-dusk underline-offset-4 hover:underline"
+        className="min-h-[36px] self-start text-xs font-medium text-dusk-ink underline-offset-4 hover:underline"
       >
         Read more
       </button>
@@ -219,7 +219,7 @@ export function GoogleReviewsSection() {
     <section
       ref={sectionRef}
       aria-labelledby="reviews-heading"
-      className="border-t border-sand bg-ivory py-[clamp(5rem,10vw,9rem)] text-basalt"
+      className="border-t border-border bg-surface py-[clamp(5rem,10vw,9rem)] text-ink"
     >
       <div className="mx-auto grid max-w-7xl items-start gap-12 px-6 md:px-10 lg:grid-cols-12">
         {/* Left summary column */}
@@ -234,7 +234,7 @@ export function GoogleReviewsSection() {
           <div className="flex items-end gap-4">
             <h2
               id="reviews-heading"
-              className="font-display text-7xl leading-none tracking-tight text-basalt md:text-8xl"
+              className="font-display text-7xl leading-none tracking-tight text-ink md:text-8xl"
             >
               {siteConfig.googleRating.toFixed(1)}
             </h2>
@@ -262,7 +262,7 @@ export function GoogleReviewsSection() {
               href={siteConfig.googleReviewUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-basalt/20 px-6 text-sm font-medium text-basalt transition-colors hover:border-ember hover:bg-ember"
+              className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-ink/20 px-6 text-sm font-medium text-ink transition-colors hover:border-ember hover:bg-ember hover:text-basalt"
             >
               <span>Review us on Google</span>
               <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
@@ -270,7 +270,7 @@ export function GoogleReviewsSection() {
             <button
               type="button"
               onClick={() => openModal()}
-              className="inline-flex min-h-[44px] items-center rounded-full px-4 text-sm font-medium text-dusk underline-offset-4 hover:underline"
+              className="inline-flex min-h-[44px] items-center rounded-full px-4 text-sm font-medium text-dusk-ink underline-offset-4 hover:underline"
             >
               Read all reviews
             </button>
@@ -324,16 +324,16 @@ export function GoogleReviewsSection() {
         >
           <div
             ref={modalRef}
-            className="flex max-h-[85vh] w-full max-w-3xl flex-col overflow-hidden rounded-[28px] border border-sand bg-ivory text-basalt shadow-2xl"
+            className="flex max-h-[85vh] w-full max-w-3xl flex-col overflow-hidden rounded-[28px] border border-border bg-surface text-ink shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex items-center justify-between gap-4 border-b border-sand px-6 py-5 sm:px-8">
+            <div className="flex items-center justify-between gap-4 border-b border-border px-6 py-5 sm:px-8">
               <div className="flex items-center gap-3">
                 <GoogleMark />
                 <div>
                   <h3
                     id="all-reviews-title"
-                    className="font-display text-2xl tracking-tight text-basalt sm:text-3xl"
+                    className="font-display text-2xl tracking-tight text-ink sm:text-3xl"
                   >
                     {siteConfig.googleRating.toFixed(1)} · Client Reviews
                   </h3>
@@ -347,7 +347,7 @@ export function GoogleReviewsSection() {
                 type="button"
                 onClick={() => setModalOpen(false)}
                 aria-label="Close reviews modal"
-                className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full border border-sand text-basalt hover:border-basalt"
+                className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full border border-border text-ink hover:border-ink"
               >
                 <X className="h-5 w-5" aria-hidden="true" />
               </button>
@@ -361,26 +361,26 @@ export function GoogleReviewsSection() {
                     key={review.id}
                     className={`space-y-3 rounded-[20px] border p-5 ${
                       isSelected
-                        ? "border-ember bg-sand/25"
-                        : "border-sand bg-ivory"
+                        ? "border-ember bg-surface-muted/35"
+                        : "border-border bg-surface-elevated"
                     }`}
                   >
                     <div className="flex items-center justify-between gap-3">
                       <div className="flex items-center gap-3">
                         <span
                           aria-hidden="true"
-                          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-sand/70 font-display text-lg text-basalt"
+                          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-surface-muted/70 font-display text-lg text-ink"
                         >
                           {review.author.trim().charAt(0).toUpperCase()}
                         </span>
                         <div>
                           <div className="flex items-center gap-1.5">
-                            <p className="text-sm font-medium text-basalt">
+                            <p className="text-sm font-medium text-ink">
                               {review.author}
                             </p>
                             {review.verified && (
                               <BadgeCheck
-                                className="h-4 w-4 text-dusk"
+                                className="h-4 w-4 text-dusk-ink"
                                 aria-label="Verified review"
                               />
                             )}
@@ -401,7 +401,7 @@ export function GoogleReviewsSection() {
                             className={`h-3.5 w-3.5 ${
                               i < review.rating
                                 ? "fill-ember text-ember"
-                                : "text-sand"
+                                : "text-border"
                             }`}
                             aria-hidden="true"
                           />
@@ -409,7 +409,7 @@ export function GoogleReviewsSection() {
                       </div>
                     </div>
 
-                    <p className="text-sm leading-relaxed text-basalt/85">
+                    <p className="text-sm leading-relaxed text-ink/85">
                       {review.text}
                     </p>
                   </article>
@@ -417,7 +417,7 @@ export function GoogleReviewsSection() {
               })}
             </div>
 
-            <div className="flex items-center justify-between border-t border-sand px-6 py-4 sm:px-8">
+            <div className="flex items-center justify-between border-t border-border px-6 py-4 sm:px-8">
               <p className="text-xs text-stone">
                 Verified client feedback
               </p>

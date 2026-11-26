@@ -57,7 +57,7 @@ export function TrustStrip() {
       ref={stripRef}
       data-hero-next
       aria-label="Key figures"
-      className="border-y border-sand bg-ivory text-basalt"
+      className="border-y border-border bg-surface text-ink"
     >
       <div className="mx-auto grid max-w-7xl grid-cols-2 gap-8 px-6 py-12 md:grid-cols-4 md:px-10 md:py-14">
         {siteConfig.stats.map((stat) => (
@@ -65,7 +65,7 @@ export function TrustStrip() {
             <p
               data-count={stat.value}
               data-suffix={stat.suffix}
-              className="font-display text-4xl tracking-tight text-basalt md:text-5xl"
+              className="font-display text-4xl tracking-tight text-ink md:text-5xl"
             >
               {stat.value}
               {stat.suffix}
