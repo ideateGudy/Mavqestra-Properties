@@ -82,21 +82,31 @@ export function HeroSection() {
       let lastSetTime = -1;
       let targetTime = 0;
 
+      const applySeek = () => {
+        if (!video || !Number.isFinite(video.duration)) return;
+        if (video.seeking) return;
+        const clamped = Math.min(
+          Math.max(0, targetTime),
+          Math.max(0, video.duration - 0.03)
+        );
+        if (Math.abs(clamped - lastSetTime) >= 1 / 60) {
+          video.currentTime = clamped;
+          lastSetTime = clamped;
+        }
+      };
+
       const scheduleSeek = () => {
         if (rafId !== null) return;
         rafId = window.requestAnimationFrame(() => {
           rafId = null;
-          if (!video || !Number.isFinite(video.duration)) return;
-          const clamped = Math.min(
-            Math.max(0, targetTime),
-            Math.max(0, video.duration - 0.05)
-          );
-          if (Math.abs(clamped - lastSetTime) >= 1 / 30) {
-            video.currentTime = clamped;
-            lastSetTime = clamped;
-          }
+          applySeek();
         });
       };
+
+      const onSeeked = () => {
+        applySeek();
+      };
+      video.addEventListener("seeked", onSeeked);
 
       let activeTl: gsap.core.Timeline | null = null;
 
@@ -226,6 +236,7 @@ export function HeroSection() {
 
       return () => {
         mm.revert();
+        video.removeEventListener("seeked", onSeeked);
         if (rafId !== null) {
           window.cancelAnimationFrame(rafId);
         }
