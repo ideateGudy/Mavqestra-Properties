@@ -1,4 +1,4 @@
-import { Property } from "@/types";
+import type { Property, PropertyGallerySection } from "@/types";
 
 // TODO(client): replace all 12 placeholder listings with verified MAVQESTRA PROPERTIES inventory.
 export const properties: Property[] = [
@@ -109,7 +109,11 @@ export const properties: Property[] = [
     price: 3200000000,
     location: { area: "Banana Island", city: "Lagos", state: "Lagos" },
     sizeSqm: 1500,
-    images: ["/images/properties/prop-05.jpg"],
+    images: [
+      "/images/properties/prop-05.jpg",
+      "/images/properties/prop-01.jpg",
+      "/images/properties/prop-02.jpg",
+    ],
     description:
       "Placeholder listing: prime fenced residential plot with direct lagoon frontage and verified Governor's Consent.",
     features: [
@@ -133,7 +137,10 @@ export const properties: Property[] = [
     bathrooms: 4,
     toilets: 5,
     sizeSqm: 380,
-    images: ["/images/properties/prop-06.jpg"],
+    images: [
+      "/images/properties/prop-06.jpg",
+      "/images/properties/prop-03.jpg",
+    ],
     description:
       "Placeholder listing: four-bedroom corner terrace inside a quiet gated enclave with private courtyard and dedicated backup generator.",
     features: [
@@ -158,7 +165,10 @@ export const properties: Property[] = [
     bathrooms: 3,
     toilets: 4,
     sizeSqm: 290,
-    images: ["/images/properties/prop-01.jpg"],
+    images: [
+      "/images/properties/prop-01.jpg",
+      "/images/properties/prop-03.jpg",
+    ],
     description:
       "Placeholder listing: three-bedroom high-rise apartment with floor-to-ceiling glazing, district cooling, and underground parking.",
     features: [
@@ -182,7 +192,10 @@ export const properties: Property[] = [
     bathrooms: 5,
     toilets: 6,
     sizeSqm: 610,
-    images: ["/images/properties/prop-02.jpg"],
+    images: [
+      "/images/properties/prop-02.jpg",
+      "/images/properties/prop-04.jpg",
+    ],
     description:
       "Placeholder listing: split-level hillside duplex designed for natural cross-ventilation and panoramic views over Abuja.",
     features: [
@@ -204,7 +217,10 @@ export const properties: Property[] = [
     priceLabel: "per annum",
     location: { area: "Ikoyi", city: "Lagos", state: "Lagos" },
     sizeSqm: 850,
-    images: ["/images/properties/prop-03.jpg"],
+    images: [
+      "/images/properties/prop-03.jpg",
+      "/images/properties/prop-05.jpg",
+    ],
     description:
       "Placeholder listing: Grade-A boutique office building suited to family offices, private wealth practices, or design studios.",
     features: [
@@ -228,7 +244,10 @@ export const properties: Property[] = [
     bathrooms: 4,
     toilets: 5,
     sizeSqm: 340,
-    images: ["/images/properties/prop-04.jpg"],
+    images: [
+      "/images/properties/prop-04.jpg",
+      "/images/properties/prop-06.jpg",
+    ],
     description:
       "Placeholder listing: recently closed four-bedroom terrace residence two minutes from Landmark Beachfront.",
     features: [
@@ -251,7 +270,10 @@ export const properties: Property[] = [
     bathrooms: 3,
     toilets: 4,
     sizeSqm: 260,
-    images: ["/images/properties/prop-05.jpg"],
+    images: [
+      "/images/properties/prop-05.jpg",
+      "/images/properties/prop-03.jpg",
+    ],
     description:
       "Placeholder listing: three-bedroom serviced apartment in central Wuse II with private balcony and strong rental yield.",
     features: [
@@ -274,7 +296,10 @@ export const properties: Property[] = [
     bathrooms: 4,
     toilets: 5,
     sizeSqm: 410,
-    images: ["/images/properties/prop-06.jpg"],
+    images: [
+      "/images/properties/prop-06.jpg",
+      "/images/properties/prop-04.jpg",
+    ],
     description:
       "Placeholder listing: four-bedroom fully detached family home in a serene, flood-free estate off Chevron Drive.",
     features: [
@@ -287,3 +312,159 @@ export const properties: Property[] = [
     addedAt: "2026-08-02",
   },
 ];
+
+export interface PropertyFeatureMedia {
+  label: string;
+  image: string;
+}
+
+const FEATURE_IMAGE_RULES: { keywords: string[]; image: string }[] = [
+  {
+    keywords: ["pool", "lap pool"],
+    image: "/images/properties/pool.jpg",
+  },
+  {
+    keywords: ["kitchen", "pantry", "appliances"],
+    image: "/images/properties/kitchen.jpg",
+  },
+  {
+    keywords: ["bedroom", "en-suite", "staff quarters"],
+    image: "/images/properties/bedroom.jpg",
+  },
+  {
+    keywords: ["bathroom", "tub", "shower"],
+    image: "/images/properties/bathroom.jpg",
+  },
+  {
+    keywords: [
+      "reception",
+      "lounge",
+      "cinema",
+      "study",
+      "terrace",
+      "sea view",
+      "ocean",
+      "open-plan",
+      "cooling",
+      "concierge",
+      "elevator",
+    ],
+    image: "/images/properties/prop-03.jpg",
+  },
+  {
+    keywords: [
+      "garden",
+      "lagoon",
+      "waterfront",
+      "estate access",
+      "immediate build",
+      "rooftop",
+    ],
+    image: "/images/properties/prop-05.jpg",
+  },
+  {
+    keywords: [
+      "smart-home",
+      "solar",
+      "carport",
+      "parking",
+      "forecourt",
+      "interlocked",
+      "glazing",
+      "windows",
+      "milestone",
+      "completion",
+    ],
+    image: "/images/properties/prop-04.jpg",
+  },
+  {
+    keywords: [
+      "security",
+      "gated",
+      "power",
+      "transformer",
+      "borehole",
+      "water",
+      "fibre",
+      "access control",
+    ],
+    image: "/images/properties/prop-06.jpg",
+  },
+  {
+    keywords: ["certificate", "consent", "hillside", "address", "yield"],
+    image: "/images/properties/prop-02.jpg",
+  },
+];
+
+export function getPropertyFeatureMedia(
+  property: Property
+): PropertyFeatureMedia[] {
+  const fallback = property.images[0] ?? "/images/properties/prop-01.jpg";
+  return property.features.map((label) => {
+    const lower = label.toLowerCase();
+    const matched = FEATURE_IMAGE_RULES.find((rule) =>
+      rule.keywords.some((kw) => lower.includes(kw))
+    );
+    return {
+      label,
+      image: matched ? matched.image : fallback,
+    };
+  });
+}
+
+export function getPropertyGallerySections(
+  property: Property
+): PropertyGallerySection[] {
+  if (property.gallerySections && property.gallerySections.length > 0) {
+    return property.gallerySections;
+  }
+
+  const exteriorImages =
+    property.images.length > 0
+      ? property.images
+      : ["/images/properties/prop-01.jpg"];
+
+  const featureImages = Array.from(
+    new Set(getPropertyFeatureMedia(property).map((f) => f.image))
+  );
+
+  if (property.type === "land") {
+    return [
+      {
+        label: "Site & Waterfront",
+        images: exteriorImages,
+      },
+      {
+        label: "Features & Infrastructure",
+        images: featureImages,
+      },
+    ];
+  }
+
+  return [
+    {
+      label: "Exterior & Grounds",
+      images: exteriorImages,
+    },
+    {
+      label: "Living & Reception",
+      images: ["/images/properties/prop-03.jpg", exteriorImages[0]],
+    },
+    {
+      label: "Bedrooms",
+      images: ["/images/properties/bedroom.jpg"],
+    },
+    {
+      label: "Bathrooms",
+      images: ["/images/properties/bathroom.jpg"],
+    },
+    {
+      label: "Kitchen",
+      images: ["/images/properties/kitchen.jpg"],
+    },
+    {
+      label: "Features & Infrastructure",
+      images: featureImages,
+    },
+  ];
+}

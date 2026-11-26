@@ -8,6 +8,11 @@ export type PropertyType =
   | "land"
   | "commercial";
 
+export interface PropertyGallerySection {
+  label: string;
+  images: string[];
+}
+
 export interface Property {
   id: string;
   slug: string;
@@ -26,6 +31,7 @@ export interface Property {
   toilets?: number;
   sizeSqm?: number;
   images: string[]; // paths in /public/images/properties/
+  gallerySections?: PropertyGallerySection[];
   description: string;
   features: string[];
   featured?: boolean; // shown on landing page
