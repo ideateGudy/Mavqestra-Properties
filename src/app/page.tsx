@@ -2,6 +2,7 @@ import { siteConfig } from "@/config/site";
 import { HeroSection } from "@/components/home/HeroSection";
 import { TrustStrip } from "@/components/home/TrustStrip";
 import { AboutSection } from "@/components/home/AboutSection";
+import { ScrollVideoSection } from "@/components/home/ScrollVideoSection";
 import { FeaturedProperties } from "@/components/home/FeaturedProperties";
 import { ServicesProcessSection } from "@/components/home/ServicesProcessSection";
 import { ValuationCtaBand } from "@/components/home/ValuationCtaBand";
@@ -43,6 +44,7 @@ export default function HomePage() {
       <HeroSection />
       <TrustStrip />
       <AboutSection />
+      <ScrollVideoSection />
       <FeaturedProperties />
       <ServicesProcessSection />
       <ValuationCtaBand />

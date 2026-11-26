@@ -37,6 +37,15 @@ export const siteConfig = {
     secondaryCta: "Book consultation",
   },
 
+  showcase: {
+    eyebrow: "Architectural Detail",
+    headline: "Crafted for light, proportion, and permanence.",
+    subheadline:
+      "Every residence is evaluated for structural integrity, natural light, and lasting neighbourhood value.",
+    ctaLabel: "Browse residences",
+    ctaHref: "/properties",
+  },
+
   defaultWhatsAppMessage:
     "Hello MAVQESTRA PROPERTIES, I would like to book a private property consultation.",
 
