@@ -46,7 +46,7 @@ export function PropertyCard({ property, className = "" }: PropertyCardProps) {
         className="relative block aspect-[4/3] w-full overflow-hidden bg-graphite"
       >
         <Image
-          src={property.images[0] ?? "/images/properties/prop-01.svg"}
+          src={property.images[0] ?? "/images/properties/prop-01.jpg"}
           alt={`${property.title} in ${property.location.area}, ${property.location.city}`}
           fill
           sizes="(max-width: 767px) 85vw, (max-width: 1200px) 48vw, 33vw"

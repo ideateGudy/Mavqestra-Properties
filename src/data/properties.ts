@@ -14,7 +14,7 @@ export const properties: Property[] = [
     bathrooms: 6,
     toilets: 7,
     sizeSqm: 920,
-    images: ["/images/properties/prop-01.svg", "/images/properties/prop-02.svg"],
+    images: ["/images/properties/prop-01.jpg", "/images/properties/prop-02.jpg"],
     description:
       "Placeholder listing: five-bedroom contemporary detached residence with double-height living volume, private pool courtyard, and two-room staff quarters.",
     features: [
@@ -39,7 +39,7 @@ export const properties: Property[] = [
     bathrooms: 6,
     toilets: 7,
     sizeSqm: 1100,
-    images: ["/images/properties/prop-02.svg", "/images/properties/prop-03.svg"],
+    images: ["/images/properties/prop-02.jpg", "/images/properties/prop-03.jpg"],
     description:
       "Placeholder listing: elevated six-bedroom villa with limestone facade, private cinema, landscaped gardens, and gatehouse security.",
     features: [
@@ -64,7 +64,7 @@ export const properties: Property[] = [
     bathrooms: 4,
     toilets: 5,
     sizeSqm: 430,
-    images: ["/images/properties/prop-03.svg", "/images/properties/prop-04.svg"],
+    images: ["/images/properties/prop-03.jpg", "/images/properties/prop-04.jpg"],
     description:
       "Placeholder listing: full-floor penthouse overlooking the Atlantic shoreline with wrap-around terrace, private lift lobby, and concierge desk.",
     features: [
@@ -88,7 +88,7 @@ export const properties: Property[] = [
     bathrooms: 4,
     toilets: 5,
     sizeSqm: 480,
-    images: ["/images/properties/prop-04.svg", "/images/properties/prop-05.svg"],
+    images: ["/images/properties/prop-04.jpg", "/images/properties/prop-05.jpg"],
     description:
       "Placeholder listing: architect-designed semi-detached duplex currently in finishing stage, featuring cantilevered balconies and smart-home wiring.",
     features: [
@@ -109,7 +109,7 @@ export const properties: Property[] = [
     price: 3200000000,
     location: { area: "Banana Island", city: "Lagos", state: "Lagos" },
     sizeSqm: 1500,
-    images: ["/images/properties/prop-05.svg"],
+    images: ["/images/properties/prop-05.jpg"],
     description:
       "Placeholder listing: prime fenced residential plot with direct lagoon frontage and verified Governor's Consent.",
     features: [
@@ -133,7 +133,7 @@ export const properties: Property[] = [
     bathrooms: 4,
     toilets: 5,
     sizeSqm: 380,
-    images: ["/images/properties/prop-06.svg"],
+    images: ["/images/properties/prop-06.jpg"],
     description:
       "Placeholder listing: four-bedroom corner terrace inside a quiet gated enclave with private courtyard and dedicated backup generator.",
     features: [
@@ -158,7 +158,7 @@ export const properties: Property[] = [
     bathrooms: 3,
     toilets: 4,
     sizeSqm: 290,
-    images: ["/images/properties/prop-01.svg"],
+    images: ["/images/properties/prop-01.jpg"],
     description:
       "Placeholder listing: three-bedroom high-rise apartment with floor-to-ceiling glazing, district cooling, and underground parking.",
     features: [
@@ -182,7 +182,7 @@ export const properties: Property[] = [
     bathrooms: 5,
     toilets: 6,
     sizeSqm: 610,
-    images: ["/images/properties/prop-02.svg"],
+    images: ["/images/properties/prop-02.jpg"],
     description:
       "Placeholder listing: split-level hillside duplex designed for natural cross-ventilation and panoramic views over Abuja.",
     features: [
@@ -204,7 +204,7 @@ export const properties: Property[] = [
     priceLabel: "per annum",
     location: { area: "Ikoyi", city: "Lagos", state: "Lagos" },
     sizeSqm: 850,
-    images: ["/images/properties/prop-03.svg"],
+    images: ["/images/properties/prop-03.jpg"],
     description:
       "Placeholder listing: Grade-A boutique office building suited to family offices, private wealth practices, or design studios.",
     features: [
@@ -228,7 +228,7 @@ export const properties: Property[] = [
     bathrooms: 4,
     toilets: 5,
     sizeSqm: 340,
-    images: ["/images/properties/prop-04.svg"],
+    images: ["/images/properties/prop-04.jpg"],
     description:
       "Placeholder listing: recently closed four-bedroom terrace residence two minutes from Landmark Beachfront.",
     features: [
@@ -251,7 +251,7 @@ export const properties: Property[] = [
     bathrooms: 3,
     toilets: 4,
     sizeSqm: 260,
-    images: ["/images/properties/prop-05.svg"],
+    images: ["/images/properties/prop-05.jpg"],
     description:
       "Placeholder listing: three-bedroom serviced apartment in central Wuse II with private balcony and strong rental yield.",
     features: [
@@ -274,7 +274,7 @@ export const properties: Property[] = [
     bathrooms: 4,
     toilets: 5,
     sizeSqm: 410,
-    images: ["/images/properties/prop-06.svg"],
+    images: ["/images/properties/prop-06.jpg"],
     description:
       "Placeholder listing: four-bedroom fully detached family home in a serene, flood-free estate off Chevron Drive.",
     features: [

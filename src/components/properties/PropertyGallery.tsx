@@ -11,7 +11,7 @@ interface PropertyGalleryProps {
 
 export function PropertyGallery({ images, title }: PropertyGalleryProps) {
   const safeImages =
-    images.length > 0 ? images : ["/images/properties/prop-01.svg"];
+    images.length > 0 ? images : ["/images/properties/prop-01.jpg"];
   const [activeIndex, setActiveIndex] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
 
