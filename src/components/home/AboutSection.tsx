@@ -1,14 +1,16 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, X } from "lucide-react";
 import { siteConfig } from "@/config/site";
 import { revealOnScroll, useGSAP } from "@/lib/gsap";
 
 export function AboutSection() {
   const sectionRef = useRef<HTMLElement>(null);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
 
   useGSAP(
     () => {
@@ -19,6 +21,22 @@ export function AboutSection() {
     },
     { scope: sectionRef }
   );
+
+  useEffect(() => {
+    if (!lightboxOpen) return;
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setLightboxOpen(false);
+      }
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [lightboxOpen]);
 
   return (
     <section
@@ -31,13 +49,20 @@ export function AboutSection() {
           data-about-reveal
           className="relative overflow-hidden rounded-[28px] bg-surface-muted/40 md:col-span-7"
         >
-          <Image
-            src={siteConfig.about.image}
-            alt={siteConfig.about.imageAlt}
-            width={1280}
-            height={720}
-            className="aspect-[16/10] w-full object-cover"
-          />
+          <button
+            type="button"
+            onClick={() => setLightboxOpen(true)}
+            aria-label={`View ${siteConfig.about.imageAlt} in fullscreen`}
+            className="group block w-full cursor-zoom-in text-left"
+          >
+            <Image
+              src={siteConfig.about.image}
+              alt={siteConfig.about.imageAlt}
+              width={1280}
+              height={720}
+              className="aspect-[16/10] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+            />
+          </button>
         </div>
 
         <div className="space-y-6 md:col-span-5">
@@ -70,6 +95,57 @@ export function AboutSection() {
           </div>
         </div>
       </div>
+
+      {lightboxOpen &&
+        typeof document !== "undefined" &&
+        createPortal(
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-label={siteConfig.about.imageAlt}
+            className="fixed inset-0 z-[100] flex flex-col bg-basalt text-ivory"
+            onClick={() => setLightboxOpen(false)}
+          >
+            <div
+              className="relative z-20 flex shrink-0 items-center justify-between gap-3 px-4 py-3 sm:px-6 sm:py-4"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="min-w-0">
+                <p className="text-xs font-medium uppercase tracking-[0.2em] text-dusk-ink">
+                  {siteConfig.about.eyebrow}
+                </p>
+                <p className="truncate font-display text-xl text-ivory sm:text-2xl">
+                  {siteConfig.about.headline}
+                </p>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => setLightboxOpen(false)}
+                aria-label="Close fullscreen image"
+                className="inline-flex min-h-[44px] min-w-[44px] shrink-0 items-center justify-center rounded-full border border-ivory/20 bg-basalt/80 text-ivory backdrop-blur-sm hover:border-ember"
+              >
+                <X className="h-5 w-5" aria-hidden="true" />
+              </button>
+            </div>
+
+            <div
+              className="relative flex min-h-0 w-full flex-1 items-center justify-center px-2 pb-4 sm:px-6 sm:pb-6"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="relative h-full min-h-0 w-full min-w-0 flex-1 overflow-hidden">
+                <Image
+                  src={siteConfig.about.image}
+                  alt={siteConfig.about.imageAlt}
+                  fill
+                  sizes="100vw"
+                  className="object-contain"
+                />
+              </div>
+            </div>
+          </div>,
+          document.body
+        )}
     </section>
   );
 }
