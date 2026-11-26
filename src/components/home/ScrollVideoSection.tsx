@@ -14,6 +14,7 @@ export function ScrollVideoSection() {
 
   const [videoError, setVideoError] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
+  const [shouldPreloadFull, setShouldPreloadFull] = useState(false);
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -22,6 +23,24 @@ export function ScrollVideoSection() {
     mq.addEventListener("change", update);
     return () => mq.removeEventListener("change", update);
   }, []);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section || shouldPreloadFull) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          setShouldPreloadFull(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "600px 0px" }
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, [shouldPreloadFull]);
 
   useGSAP(
     () => {
@@ -188,7 +207,7 @@ export function ScrollVideoSection() {
           ref={videoRef}
           muted
           playsInline
-          preload="auto"
+          preload={shouldPreloadFull ? "auto" : "metadata"}
           poster="/images/section-poster.jpg"
           onError={() => setVideoError(true)}
           aria-hidden="true"
