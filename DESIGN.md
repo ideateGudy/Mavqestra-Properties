@@ -41,7 +41,7 @@ Rules: ember is used sparingly (one primary CTA per viewport). No gradients exce
 
 ### Motion budget (important — many users are on mid/low-end Android over mobile data)
 - **GSAP is the only animation library** (`gsap`, `ScrollTrigger`, `@gsap/react`'s `useGSAP`). Do not add framer-motion/motion, AOS, or other animation libs. Use GSAP for the hero scrub AND all page animations: section reveals, staggered text/card entrances, count-ups, marquee, nav show/hide, menu open/close, page-load intro, hover micro-interactions, route-transition choreography. Register plugins once in `src/lib/gsap.ts`; use `useGSAP({ scope })` so every tween/ScrollTrigger is cleaned up on unmount; use `gsap.matchMedia()` for desktop/mobile/reduced-motion variants; call `ScrollTrigger.refresh()` after fonts/images load.
-- One signature moment: the **scroll-scrubbed construction hero** (bidirectional: scrolling down plays the video forward, scrolling up plays it backward, for mouse wheel, trackpad, touch swipe and keyboard scroll). Everything else is subtle: fade/translate-up on enter (≤ 24px, 500–700ms, `power2.out`), image parallax ≤ 8%, button hover.
+- Two signature scroll-scrubbed moments: the **scroll-scrubbed construction hero** AND the **scroll-scrubbed architectural showcase section** (both bidirectional: scrolling down plays the video forward, scrolling up plays it backward, for mouse wheel, trackpad, touch swipe and keyboard scroll). Everything else is subtle: fade/translate-up on enter (≤ 24px, 500–700ms, `power2.out`), image parallax ≤ 8%, button hover.
 - Animate only `transform` and `opacity`.
 - Honour `prefers-reduced-motion`: replace scrub with a static poster + simple fade.
 - No autoplaying sound. No layout-shifting animation.

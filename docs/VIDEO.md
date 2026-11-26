@@ -1,23 +1,31 @@
-# Hero Video Encoding Guide (`MAVQESTRA PROPERTIES`)
+# Scroll-Scrubbed Video Encoding Guide (`MAVQESTRA PROPERTIES`)
 
-The landing page hero uses a **scroll-scrubbed construction video** driven bidirectionally by GSAP `ScrollTrigger`.
-Because scrolling **up** seeks backward through the video frame-by-frame, **every single frame must be an Intra-frame (keyframe / `I`-frame)**. Standard inter-frame (`P` / `B`) compression causes severe backward-seek stalls on browsers and mobile devices.
+The landing page uses **two scroll-scrubbed videos** driven bidirectionally by GSAP `ScrollTrigger`:
+1. **Hero (`HeroSection`)**: `public/videos/hero-construction.mp4` (+ mobile) from `reference/hero-raw.mp4`
+2. **Architectural Showcase (`ScrollVideoSection`)**: `public/videos/section-showcase.mp4` (+ mobile) from `reference/section-raw.mp4`
+
+Because scrolling **up** seeks backward through each video frame-by-frame, **every single frame must be an Intra-frame (keyframe / `I`-frame)**. Standard inter-frame (`P` / `B`) compression causes severe backward-seek stalls on browsers and mobile devices.
 
 ## Output Files & Budgets
 
 | File | Target | Budget |
 |---|---|---|
-| `public/videos/hero-construction.mp4` | Desktop (`>= 768px`) | ≤ 12 MB |
-| `public/videos/hero-construction-mobile.mp4` | Mobile (`< 768px`) | ≤ 5 MB |
-| `public/images/hero-poster.jpg` | First-frame poster / fallback | < 200 KB |
-| `public/images/hero-poster-end.jpg` | Last-frame poster (`prefers-reduced-motion`) | < 200 KB |
+| `public/videos/hero-construction.mp4` | Hero Desktop (`>= 768px`) | ≤ 12 MB |
+| `public/videos/hero-construction-mobile.mp4` | Hero Mobile (`< 768px`) | ≤ 5 MB |
+| `public/images/hero-poster.jpg` | Hero first-frame poster | < 600 KB |
+| `public/images/hero-poster-end.jpg` | Hero last-frame poster (`prefers-reduced-motion`) | < 600 KB |
+| `public/videos/section-showcase.mp4` | Section Desktop (`>= 768px`) | ≤ 12 MB |
+| `public/videos/section-showcase-mobile.mp4` | Section Mobile (`< 768px`) | ≤ 5 MB |
+| `public/images/section-poster.jpg` | Section first-frame poster | < 600 KB |
+| `public/images/section-poster-end.jpg` | Section last-frame poster (`prefers-reduced-motion`) | < 600 KB |
 
 ## Usage
 
-Run the helper script with the path to your raw source video:
+Run the helper scripts with the path to your raw source video:
 
 ```bash
 bash scripts/encode-hero.sh reference/hero-raw.mp4
+bash scripts/encode-section.sh reference/section-raw.mp4
 ```
 
 ## Manual FFmpeg Commands

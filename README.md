@@ -47,21 +47,22 @@ whatsappNumber: "2348031234567",
 
 ---
 
-## Hero Video Setup (All-Intra Keyframe Encoding)
+## Scroll-Scrubbed Videos Setup (All-Intra Keyframe Encoding)
 
-The landing page hero scrubs a silent MP4 video bidirectionally with scroll. For instant backward scrubbing, **every frame must be a keyframe (`I`-frame)**.
+The landing page uses two silent MP4 videos scrubbed bidirectionally with scroll (`HeroSection` and `ScrollVideoSection`). For instant backward scrubbing, **every frame must be a keyframe (`I`-frame)**.
 
-1. Place your raw source video at `reference/hero-raw.mp4` (or pass any file path to the script).
-2. Run the encoding & verification script (requires `ffmpeg` and `ffprobe`):
+1. Place your raw source videos at `reference/hero-raw.mp4` and `reference/section-raw.mp4`.
+2. Run the encoding & verification scripts (requires `ffmpeg` and `ffprobe`):
 
 ```bash
 bash scripts/encode-hero.sh reference/hero-raw.mp4
+bash scripts/encode-section.sh reference/section-raw.mp4
 ```
 
 This generates and verifies:
-- `public/videos/hero-construction.mp4` (desktop, 1600px wide, ≤ 12 MB)
-- `public/videos/hero-construction-mobile.mp4` (mobile `< 768px`, 720px wide, ≤ 5 MB)
-- `public/images/hero-poster.jpg` (first frame)
-- `public/images/hero-poster-end.jpg` (last frame, used for `prefers-reduced-motion` fallback)
+- `public/videos/hero-construction.mp4` & `section-showcase.mp4` (desktop, 1600px wide, ≤ 12 MB)
+- `public/videos/hero-construction-mobile.mp4` & `section-showcase-mobile.mp4` (mobile `< 768px`, 1080px wide, ≤ 5 MB)
+- `public/images/hero-poster.jpg` & `section-poster.jpg` (first frame)
+- `public/images/hero-poster-end.jpg` & `section-poster-end.jpg` (last frame, used for `prefers-reduced-motion` fallback)
 
 See [`docs/VIDEO.md`](docs/VIDEO.md) for full FFmpeg & `ffprobe` details.
