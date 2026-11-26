@@ -304,7 +304,7 @@ export function PropertyGallery({
           role="dialog"
           aria-modal="true"
           aria-label={`${title} image gallery`}
-          className="fixed inset-0 z-50 flex items-center justify-center bg-basalt/95 p-6 text-ivory"
+          className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-basalt p-0 text-ivory sm:bg-basalt/95 sm:p-6"
           onClick={() => setLightboxOpen(false)}
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
@@ -313,13 +313,13 @@ export function PropertyGallery({
             type="button"
             onClick={() => setLightboxOpen(false)}
             aria-label="Close gallery"
-            className="absolute top-6 right-6 inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full border border-ivory/20 bg-basalt text-ivory hover:border-ember"
+            className="absolute top-4 right-4 z-20 inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full border border-ivory/20 bg-basalt/80 text-ivory backdrop-blur-sm hover:border-ember sm:top-6 sm:right-6"
           >
             <X className="h-5 w-5" aria-hidden="true" />
           </button>
 
           <div
-            className="relative flex w-full max-w-5xl items-center justify-center gap-4"
+            className="relative flex h-full w-full max-w-6xl items-center justify-center sm:h-auto sm:gap-4"
             onClick={(e) => e.stopPropagation()}
           >
             {lightboxImages.length > 1 && (
@@ -327,18 +327,18 @@ export function PropertyGallery({
                 type="button"
                 onClick={prev}
                 aria-label="Previous image"
-                className="inline-flex min-h-[44px] min-w-[44px] shrink-0 items-center justify-center rounded-full border border-ivory/20 bg-basalt/80 text-ivory hover:border-ember"
+                className="absolute top-1/2 left-3 z-20 inline-flex min-h-[44px] min-w-[44px] -translate-y-1/2 items-center justify-center rounded-full border border-ivory/20 bg-basalt/70 text-ivory backdrop-blur-sm hover:border-ember sm:static sm:translate-y-0 sm:bg-basalt/80"
               >
                 <ChevronLeft className="h-5 w-5" aria-hidden="true" />
               </button>
             )}
 
-            <div className="relative aspect-[16/10] w-full overflow-hidden rounded-[20px] bg-graphite">
+            <div className="relative h-[78svh] w-full overflow-hidden bg-basalt sm:h-auto sm:aspect-[16/10] sm:rounded-[20px] sm:bg-graphite">
               <Image
                 src={lightboxImages[activeIndex]}
                 alt={`${title} — full view ${activeIndex + 1}`}
                 fill
-                sizes="90vw"
+                sizes="100vw"
                 className="object-contain"
               />
             </div>
@@ -348,12 +348,18 @@ export function PropertyGallery({
                 type="button"
                 onClick={next}
                 aria-label="Next image"
-                className="inline-flex min-h-[44px] min-w-[44px] shrink-0 items-center justify-center rounded-full border border-ivory/20 bg-basalt/80 text-ivory hover:border-ember"
+                className="absolute top-1/2 right-3 z-20 inline-flex min-h-[44px] min-w-[44px] -translate-y-1/2 items-center justify-center rounded-full border border-ivory/20 bg-basalt/70 text-ivory backdrop-blur-sm hover:border-ember sm:static sm:translate-y-0 sm:bg-basalt/80"
               >
                 <ChevronRight className="h-5 w-5" aria-hidden="true" />
               </button>
             )}
           </div>
+
+          {lightboxImages.length > 1 && (
+            <p className="absolute bottom-5 left-1/2 z-20 -translate-x-1/2 rounded-full bg-basalt/75 px-3.5 py-1 text-xs text-ivory/85 backdrop-blur-sm">
+              {activeIndex + 1} / {lightboxImages.length}
+            </p>
+          )}
         </div>
       )}
     </div>

@@ -237,12 +237,12 @@ export function PropertyCard({ property, className = "" }: PropertyCardProps) {
           role="dialog"
           aria-modal="true"
           aria-label={`${property.title} photo gallery`}
-          className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-basalt/95 p-4 text-ivory sm:p-6"
+          className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-basalt p-0 text-ivory sm:bg-basalt/95 sm:p-6"
           onClick={() => setLightboxOpen(false)}
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
         >
-          <div className="mb-4 flex w-full max-w-5xl items-center justify-between gap-4">
+          <div className="absolute top-4 right-4 left-4 z-20 flex items-center justify-between gap-3 sm:static sm:mb-4 sm:w-full sm:max-w-5xl">
             <div className="min-w-0">
               <p className="truncate font-display text-xl text-ivory sm:text-2xl">
                 {property.title}
@@ -252,7 +252,7 @@ export function PropertyCard({ property, className = "" }: PropertyCardProps) {
               </p>
             </div>
 
-            <div className="flex items-center gap-2">
+            <div className="flex shrink-0 items-center gap-2">
               <Link
                 href={`/properties/${property.slug}`}
                 onClick={(e) => e.stopPropagation()}
@@ -265,7 +265,7 @@ export function PropertyCard({ property, className = "" }: PropertyCardProps) {
                 type="button"
                 onClick={() => setLightboxOpen(false)}
                 aria-label="Close gallery"
-                className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full border border-ivory/20 bg-basalt text-ivory hover:border-ember"
+                className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full border border-ivory/20 bg-basalt/80 text-ivory backdrop-blur-sm hover:border-ember"
               >
                 <X className="h-5 w-5" aria-hidden="true" />
               </button>
@@ -273,7 +273,7 @@ export function PropertyCard({ property, className = "" }: PropertyCardProps) {
           </div>
 
           <div
-            className="relative flex w-full max-w-5xl items-center justify-center gap-3"
+            className="relative flex h-full w-full max-w-6xl items-center justify-center sm:h-auto sm:gap-3"
             onClick={(e) => e.stopPropagation()}
           >
             {hasMultiple && (
@@ -281,18 +281,18 @@ export function PropertyCard({ property, className = "" }: PropertyCardProps) {
                 type="button"
                 onClick={prevImage}
                 aria-label="Previous image"
-                className="inline-flex min-h-[44px] min-w-[44px] shrink-0 items-center justify-center rounded-full border border-ivory/20 bg-basalt/80 text-ivory hover:border-ember"
+                className="absolute top-1/2 left-3 z-20 inline-flex min-h-[44px] min-w-[44px] -translate-y-1/2 items-center justify-center rounded-full border border-ivory/20 bg-basalt/70 text-ivory backdrop-blur-sm hover:border-ember sm:static sm:translate-y-0 sm:bg-basalt/80"
               >
                 <ChevronLeft className="h-5 w-5" aria-hidden="true" />
               </button>
             )}
 
-            <div className="relative aspect-[16/10] w-full overflow-hidden rounded-[20px] bg-graphite">
+            <div className="relative h-[78svh] w-full overflow-hidden bg-basalt sm:h-auto sm:aspect-[16/10] sm:rounded-[20px] sm:bg-graphite">
               <Image
                 src={images[activeIndex]}
                 alt={`${property.title} — full view ${activeIndex + 1}`}
                 fill
-                sizes="90vw"
+                sizes="100vw"
                 className="object-contain"
               />
             </div>
@@ -302,7 +302,7 @@ export function PropertyCard({ property, className = "" }: PropertyCardProps) {
                 type="button"
                 onClick={nextImage}
                 aria-label="Next image"
-                className="inline-flex min-h-[44px] min-w-[44px] shrink-0 items-center justify-center rounded-full border border-ivory/20 bg-basalt/80 text-ivory hover:border-ember"
+                className="absolute top-1/2 right-3 z-20 inline-flex min-h-[44px] min-w-[44px] -translate-y-1/2 items-center justify-center rounded-full border border-ivory/20 bg-basalt/70 text-ivory backdrop-blur-sm hover:border-ember sm:static sm:translate-y-0 sm:bg-basalt/80"
               >
                 <ChevronRight className="h-5 w-5" aria-hidden="true" />
               </button>
