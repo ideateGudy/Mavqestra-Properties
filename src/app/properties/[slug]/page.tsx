@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -37,9 +38,29 @@ export async function generateMetadata({
   };
 }
 
-export default async function PropertyDetailPage({
+export default function PropertyDetailPage({
   params,
 }: PageProps<"/properties/[slug]">) {
+  return (
+    <Suspense
+      fallback={
+        <main className="min-h-screen bg-surface pt-28 pb-24 text-ink">
+          <div className="mx-auto max-w-7xl px-6 md:px-10">
+            <p className="text-sm text-stone">Loading property details...</p>
+          </div>
+        </main>
+      }
+    >
+      <PropertyDetailContent params={params} />
+    </Suspense>
+  );
+}
+
+async function PropertyDetailContent({
+  params,
+}: {
+  params: PageProps<"/properties/[slug]">["params"];
+}) {
   const { slug } = await params;
   const property = properties.find((p) => p.slug === slug);
 
