@@ -241,8 +241,8 @@ export function PropertyGallery({
             </div>
 
             {/* Category filter tabs */}
-            <div className="shrink-0 border-b border-border px-4 py-3.5 sm:px-8">
-              <div className="mx-auto flex w-full max-w-7xl gap-2 overflow-x-auto">
+            <div className="shrink-0 border-b border-border px-4 pt-3.5 pb-1 sm:px-8 sm:py-3.5">
+              <div className="mx-auto flex w-full max-w-7xl gap-2 overflow-x-auto pb-2.5 sm:pb-0">
                 {["All", ...sections.map((s) => s.label)].map((cat) => {
                   const active = selectedCategory === cat;
                   return (
