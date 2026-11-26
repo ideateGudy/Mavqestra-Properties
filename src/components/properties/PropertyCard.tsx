@@ -240,12 +240,15 @@ export function PropertyCard({ property, className = "" }: PropertyCardProps) {
             role="dialog"
             aria-modal="true"
             aria-label={`${property.title} photo gallery`}
-            className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-basalt p-0 text-ivory sm:bg-basalt/95 sm:p-6"
+            className="fixed inset-0 z-[100] flex flex-col bg-basalt text-ivory"
             onClick={() => setLightboxOpen(false)}
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
           >
-            <div className="absolute top-4 right-4 left-4 z-20 flex items-center justify-between gap-3 sm:static sm:mb-4 sm:w-full sm:max-w-5xl">
+            <div
+              className="relative z-20 flex shrink-0 items-center justify-between gap-3 px-4 py-3 sm:px-6 sm:py-4"
+              onClick={(e) => e.stopPropagation()}
+            >
               <div className="min-w-0">
                 <p className="truncate font-display text-xl text-ivory sm:text-2xl">
                   {property.title}
@@ -276,7 +279,7 @@ export function PropertyCard({ property, className = "" }: PropertyCardProps) {
             </div>
 
             <div
-              className="relative flex h-full w-full max-w-6xl items-center justify-center sm:h-auto sm:gap-3"
+              className="relative flex min-h-0 w-full flex-1 items-center justify-center gap-3 px-2 pb-4 sm:px-6 sm:pb-6"
               onClick={(e) => e.stopPropagation()}
             >
               {hasMultiple && (
@@ -284,13 +287,13 @@ export function PropertyCard({ property, className = "" }: PropertyCardProps) {
                   type="button"
                   onClick={prevImage}
                   aria-label="Previous image"
-                  className="absolute top-1/2 left-3 z-20 inline-flex min-h-[44px] min-w-[44px] -translate-y-1/2 items-center justify-center rounded-full border border-ivory/20 bg-basalt/70 text-ivory backdrop-blur-sm hover:border-ember sm:static sm:translate-y-0 sm:bg-basalt/80"
+                  className="absolute top-1/2 left-3 z-20 inline-flex min-h-[44px] min-w-[44px] -translate-y-1/2 items-center justify-center rounded-full border border-ivory/20 bg-basalt/70 text-ivory backdrop-blur-sm hover:border-ember sm:static sm:shrink-0 sm:translate-y-0 sm:bg-basalt/80"
                 >
                   <ChevronLeft className="h-5 w-5" aria-hidden="true" />
                 </button>
               )}
 
-              <div className="relative h-[78svh] w-full overflow-hidden bg-basalt sm:h-auto sm:aspect-[16/10] sm:rounded-[20px] sm:bg-graphite">
+              <div className="relative h-full min-h-0 w-full min-w-0 flex-1 overflow-hidden">
                 <Image
                   src={images[activeIndex]}
                   alt={`${property.title} — full view ${activeIndex + 1}`}
@@ -305,7 +308,7 @@ export function PropertyCard({ property, className = "" }: PropertyCardProps) {
                   type="button"
                   onClick={nextImage}
                   aria-label="Next image"
-                  className="absolute top-1/2 right-3 z-20 inline-flex min-h-[44px] min-w-[44px] -translate-y-1/2 items-center justify-center rounded-full border border-ivory/20 bg-basalt/70 text-ivory backdrop-blur-sm hover:border-ember sm:static sm:translate-y-0 sm:bg-basalt/80"
+                  className="absolute top-1/2 right-3 z-20 inline-flex min-h-[44px] min-w-[44px] -translate-y-1/2 items-center justify-center rounded-full border border-ivory/20 bg-basalt/70 text-ivory backdrop-blur-sm hover:border-ember sm:static sm:shrink-0 sm:translate-y-0 sm:bg-basalt/80"
                 >
                   <ChevronRight className="h-5 w-5" aria-hidden="true" />
                 </button>

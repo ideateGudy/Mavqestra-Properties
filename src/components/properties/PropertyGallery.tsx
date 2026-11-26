@@ -208,91 +208,97 @@ export function PropertyGallery({
           role="dialog"
           aria-modal="true"
           aria-labelledby="explore-property-title"
-          className="fixed inset-0 z-50 flex items-center justify-center bg-basalt/80 p-4 backdrop-blur-xs sm:p-6"
+          className="fixed inset-0 z-[90] flex flex-col bg-surface text-ink"
           onClick={() => setExploreOpen(false)}
         >
           <div
-            className="flex max-h-[88vh] w-full max-w-5xl flex-col overflow-hidden rounded-[28px] border border-border bg-surface text-ink shadow-2xl"
+            className="flex h-full w-full flex-col overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex shrink-0 flex-wrap items-center justify-between gap-4 border-b border-border px-6 py-5 sm:px-8">
-              <div>
-                <p className="text-xs font-medium uppercase tracking-[0.2em] text-dusk-ink">
-                  Property Tour
-                </p>
-                <h2
-                  id="explore-property-title"
-                  className="font-display text-2xl tracking-tight text-ink sm:text-3xl"
-                >
-                  {title}
-                </h2>
-              </div>
+            <div className="shrink-0 border-b border-border px-4 py-4 sm:px-8 sm:py-5">
+              <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-4">
+                <div className="min-w-0">
+                  <p className="text-xs font-medium uppercase tracking-[0.2em] text-dusk-ink">
+                    Property Tour
+                  </p>
+                  <h2
+                    id="explore-property-title"
+                    className="truncate font-display text-2xl tracking-tight text-ink sm:text-3xl"
+                  >
+                    {title}
+                  </h2>
+                </div>
 
-              <button
-                type="button"
-                onClick={() => setExploreOpen(false)}
-                aria-label="Close property tour"
-                className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full border border-border text-ink hover:border-ink"
-              >
-                <X className="h-5 w-5" aria-hidden="true" />
-              </button>
+                <button
+                  type="button"
+                  onClick={() => setExploreOpen(false)}
+                  aria-label="Close property tour"
+                  className="inline-flex min-h-[44px] min-w-[44px] shrink-0 items-center justify-center rounded-full border border-border text-ink hover:border-ink"
+                >
+                  <X className="h-5 w-5" aria-hidden="true" />
+                </button>
+              </div>
             </div>
 
             {/* Category filter tabs */}
-            <div className="flex shrink-0 gap-2 overflow-x-auto border-b border-border px-6 py-3.5 sm:px-8">
-              {["All", ...sections.map((s) => s.label)].map((cat) => {
-                const active = selectedCategory === cat;
-                return (
-                  <button
-                    key={cat}
-                    type="button"
-                    onClick={() => setSelectedCategory(cat)}
-                    className={`min-h-[38px] shrink-0 rounded-full border px-4 text-xs font-medium transition-colors ${
-                      active
-                        ? "border-ember bg-ember text-basalt"
-                        : "border-border bg-surface-elevated text-ink hover:border-ink"
-                    }`}
-                  >
-                    {cat}
-                  </button>
-                );
-              })}
+            <div className="shrink-0 border-b border-border px-4 py-3.5 sm:px-8">
+              <div className="mx-auto flex w-full max-w-7xl gap-2 overflow-x-auto">
+                {["All", ...sections.map((s) => s.label)].map((cat) => {
+                  const active = selectedCategory === cat;
+                  return (
+                    <button
+                      key={cat}
+                      type="button"
+                      onClick={() => setSelectedCategory(cat)}
+                      className={`min-h-[38px] shrink-0 rounded-full border px-4 text-xs font-medium transition-colors ${
+                        active
+                          ? "border-ember bg-ember text-basalt"
+                          : "border-border bg-surface-elevated text-ink hover:border-ink"
+                      }`}
+                    >
+                      {cat}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
 
             {/* Grouped photo sections */}
-            <div className="min-h-0 flex-1 space-y-8 overflow-y-auto px-6 py-6 sm:px-8">
-              {visibleSections.map((section) => (
-                <section key={section.label} className="space-y-4">
-                  <div className="flex items-baseline justify-between border-b border-border pb-2">
-                    <h3 className="font-display text-2xl tracking-tight text-ink">
-                      {section.label}
-                    </h3>
-                    <span className="text-xs text-stone">
-                      {section.images.length}{" "}
-                      {section.images.length === 1 ? "photo" : "photos"}
-                    </span>
-                  </div>
+            <div className="min-h-0 flex-1 overflow-y-auto px-4 py-6 sm:px-8 sm:py-8">
+              <div className="mx-auto w-full max-w-7xl space-y-10">
+                {visibleSections.map((section) => (
+                  <section key={section.label} className="space-y-4">
+                    <div className="flex items-baseline justify-between border-b border-border pb-2">
+                      <h3 className="font-display text-2xl tracking-tight text-ink">
+                        {section.label}
+                      </h3>
+                      <span className="text-xs text-stone">
+                        {section.images.length}{" "}
+                        {section.images.length === 1 ? "photo" : "photos"}
+                      </span>
+                    </div>
 
-                  <div className="grid gap-4 sm:grid-cols-2">
-                    {section.images.map((src, idx) => (
-                      <button
-                        key={`${section.label}-${src}-${idx}`}
-                        type="button"
-                        onClick={() => openSectionImageInLightbox(src)}
-                        className="group relative aspect-[16/10] w-full cursor-zoom-in overflow-hidden rounded-[20px] border border-border bg-graphite text-left"
-                      >
-                        <Image
-                          src={src}
-                          alt={`${title} — ${section.label} ${idx + 1}`}
-                          fill
-                          sizes="(max-width: 640px) 92vw, 44vw"
-                          className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
-                        />
-                      </button>
-                    ))}
-                  </div>
-                </section>
-              ))}
+                    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                      {section.images.map((src, idx) => (
+                        <button
+                          key={`${section.label}-${src}-${idx}`}
+                          type="button"
+                          onClick={() => openSectionImageInLightbox(src)}
+                          className="group relative aspect-[16/10] w-full cursor-zoom-in overflow-hidden rounded-[20px] border border-border bg-graphite text-left"
+                        >
+                          <Image
+                            src={src}
+                            alt={`${title} — ${section.label} ${idx + 1}`}
+                            fill
+                            sizes="(max-width: 640px) 94vw, (max-width: 1024px) 46vw, 31vw"
+                            className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+                          />
+                        </button>
+                      ))}
+                    </div>
+                  </section>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -304,22 +310,38 @@ export function PropertyGallery({
           role="dialog"
           aria-modal="true"
           aria-label={`${title} image gallery`}
-          className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-basalt p-0 text-ivory sm:bg-basalt/95 sm:p-6"
+          className="fixed inset-0 z-[100] flex flex-col bg-basalt text-ivory"
           onClick={() => setLightboxOpen(false)}
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
         >
-          <button
-            type="button"
-            onClick={() => setLightboxOpen(false)}
-            aria-label="Close gallery"
-            className="absolute top-4 right-4 z-20 inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full border border-ivory/20 bg-basalt/80 text-ivory backdrop-blur-sm hover:border-ember sm:top-6 sm:right-6"
+          <div
+            className="relative z-20 flex shrink-0 items-center justify-between gap-3 px-4 py-3 sm:px-6 sm:py-4"
+            onClick={(e) => e.stopPropagation()}
           >
-            <X className="h-5 w-5" aria-hidden="true" />
-          </button>
+            <div className="min-w-0">
+              <p className="truncate font-display text-xl text-ivory sm:text-2xl">
+                {title}
+              </p>
+              {lightboxImages.length > 1 && (
+                <p className="text-xs text-stone">
+                  Photo {activeIndex + 1} of {lightboxImages.length}
+                </p>
+              )}
+            </div>
+
+            <button
+              type="button"
+              onClick={() => setLightboxOpen(false)}
+              aria-label="Close gallery"
+              className="inline-flex min-h-[44px] min-w-[44px] shrink-0 items-center justify-center rounded-full border border-ivory/20 bg-basalt/80 text-ivory backdrop-blur-sm hover:border-ember"
+            >
+              <X className="h-5 w-5" aria-hidden="true" />
+            </button>
+          </div>
 
           <div
-            className="relative flex h-full w-full max-w-6xl items-center justify-center sm:h-auto sm:gap-4"
+            className="relative flex min-h-0 w-full flex-1 items-center justify-center gap-4 px-2 pb-4 sm:px-6 sm:pb-6"
             onClick={(e) => e.stopPropagation()}
           >
             {lightboxImages.length > 1 && (
@@ -327,13 +349,13 @@ export function PropertyGallery({
                 type="button"
                 onClick={prev}
                 aria-label="Previous image"
-                className="absolute top-1/2 left-3 z-20 inline-flex min-h-[44px] min-w-[44px] -translate-y-1/2 items-center justify-center rounded-full border border-ivory/20 bg-basalt/70 text-ivory backdrop-blur-sm hover:border-ember sm:static sm:translate-y-0 sm:bg-basalt/80"
+                className="absolute top-1/2 left-3 z-20 inline-flex min-h-[44px] min-w-[44px] -translate-y-1/2 items-center justify-center rounded-full border border-ivory/20 bg-basalt/70 text-ivory backdrop-blur-sm hover:border-ember sm:static sm:shrink-0 sm:translate-y-0 sm:bg-basalt/80"
               >
                 <ChevronLeft className="h-5 w-5" aria-hidden="true" />
               </button>
             )}
 
-            <div className="relative h-[78svh] w-full overflow-hidden bg-basalt sm:h-auto sm:aspect-[16/10] sm:rounded-[20px] sm:bg-graphite">
+            <div className="relative h-full min-h-0 w-full min-w-0 flex-1 overflow-hidden">
               <Image
                 src={lightboxImages[activeIndex]}
                 alt={`${title} — full view ${activeIndex + 1}`}
@@ -348,18 +370,12 @@ export function PropertyGallery({
                 type="button"
                 onClick={next}
                 aria-label="Next image"
-                className="absolute top-1/2 right-3 z-20 inline-flex min-h-[44px] min-w-[44px] -translate-y-1/2 items-center justify-center rounded-full border border-ivory/20 bg-basalt/70 text-ivory backdrop-blur-sm hover:border-ember sm:static sm:translate-y-0 sm:bg-basalt/80"
+                className="absolute top-1/2 right-3 z-20 inline-flex min-h-[44px] min-w-[44px] -translate-y-1/2 items-center justify-center rounded-full border border-ivory/20 bg-basalt/70 text-ivory backdrop-blur-sm hover:border-ember sm:static sm:shrink-0 sm:translate-y-0 sm:bg-basalt/80"
               >
                 <ChevronRight className="h-5 w-5" aria-hidden="true" />
               </button>
             )}
           </div>
-
-          {lightboxImages.length > 1 && (
-            <p className="absolute bottom-5 left-1/2 z-20 -translate-x-1/2 rounded-full bg-basalt/75 px-3.5 py-1 text-xs text-ivory/85 backdrop-blur-sm">
-              {activeIndex + 1} / {lightboxImages.length}
-            </p>
-          )}
         </div>
       )}
     </div>
