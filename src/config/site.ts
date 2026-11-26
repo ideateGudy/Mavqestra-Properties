@@ -13,7 +13,7 @@ export const siteConfig = {
   // TODO(client): replace with official contact email
   email: "concierge@mavqestra.example",
   // TODO(client): replace with official office address
-  address: "14 Bourdillon Road, Ikoyi, Lagos",
+  address: "14 Bourdillon Road, Ikoyi,Features & Infrastructure Lagos",
 
   socials: {
     // TODO(client): replace with official social URLs
