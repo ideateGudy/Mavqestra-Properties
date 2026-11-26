@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
@@ -10,7 +11,11 @@ import {
   Maximize2,
   MessageCircle,
 } from "lucide-react";
-import { properties } from "@/data/properties";
+import {
+  getPropertyFeatureMedia,
+  getPropertyGallerySections,
+  properties,
+} from "@/data/properties";
 import { siteConfig } from "@/config/site";
 import { formatNaira } from "@/lib/format";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
@@ -64,6 +69,8 @@ export default async function PropertyDetailPage({
       ? similar
       : properties.filter((p) => p.id !== property.id).slice(0, 3);
 
+  const featureMedia = getPropertyFeatureMedia(property);
+
   return (
     <main className="min-h-screen bg-surface pt-28 pb-24 text-ink">
       <div className="mx-auto max-w-7xl space-y-12 px-6 md:px-10">
@@ -77,7 +84,11 @@ export default async function PropertyDetailPage({
           </Link>
         </div>
 
-        <PropertyGallery images={property.images} title={property.title} />
+        <PropertyGallery
+          images={property.images}
+          sections={getPropertyGallerySections(property)}
+          title={property.title}
+        />
 
         <div className="grid gap-12 lg:grid-cols-12">
           {/* Main property details */}
@@ -179,17 +190,28 @@ export default async function PropertyDetailPage({
               <h2 className="text-xs font-medium uppercase tracking-[0.2em] text-stone">
                 Features &amp; Infrastructure
               </h2>
-              <ul className="grid gap-3 sm:grid-cols-2">
-                {property.features.map((feature) => (
+              <ul className="grid gap-4 sm:grid-cols-2">
+                {featureMedia.map((item) => (
                   <li
-                    key={feature}
-                    className="flex items-center gap-3 rounded-xl border border-border bg-surface-elevated px-4 py-3 text-sm text-ink"
+                    key={item.label}
+                    className="overflow-hidden rounded-[20px] border border-border bg-surface-elevated"
                   >
-                    <Check
-                      className="h-4 w-4 shrink-0 text-dusk-ink"
-                      aria-hidden="true"
-                    />
-                    <span>{feature}</span>
+                    <div className="relative aspect-[16/10] w-full bg-graphite">
+                      <Image
+                        src={item.image}
+                        alt={`${property.title} — ${item.label}`}
+                        fill
+                        sizes="(max-width: 640px) 92vw, 380px"
+                        className="object-cover"
+                      />
+                    </div>
+                    <div className="flex items-center gap-3 px-4 py-3.5 text-sm font-medium text-ink">
+                      <Check
+                        className="h-4 w-4 shrink-0 text-dusk-ink"
+                        aria-hidden="true"
+                      />
+                      <span>{item.label}</span>
+                    </div>
                   </li>
                 ))}
               </ul>
